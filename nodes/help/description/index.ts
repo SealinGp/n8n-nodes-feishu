@@ -724,6 +724,15 @@ export const DESCRIPTIONS = {
 		description: 'The name of the input binary field containing the file/image to be uploaded',
 	},
 
+	OUTPUT_AS_BINARY: {
+		displayName: 'Output as Binary(以二进制输出)',
+		name: 'outputAsBinary',
+		type: 'boolean',
+		default: true,
+		description:
+			'If enabled, returns data as binary attachment. If disabled, returns JSON with base64-encoded data.',
+	},
+
 	DOWNLOAD_RESOURCE: {
 		displayName: 'Whether Download Resource(是否下载资源)',
 		name: 'downloadResource',

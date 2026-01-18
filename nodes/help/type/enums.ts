@@ -183,6 +183,7 @@ export declare const enum OutputType {
 	Single = 'single',
 	Multiple = 'multiple',
 	None = 'none',
+	Binary = 'binary',
 }
 
 export declare const enum FileType {

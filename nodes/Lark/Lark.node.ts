@@ -391,6 +391,24 @@ export class Lark implements INodeType {
 				} else if (outputType === OutputType.Multiple) {
 					const { outputData } = responseData as { outputData: INodeExecutionData[][] };
 					returnData = outputData;
+				} else if (outputType === OutputType.Binary) {
+					// Handle binary output type
+					const { binaryData, binaryPropertyName = 'data' } = responseData as {
+						binaryData: IDataObject;
+						binaryPropertyName?: string;
+					};
+					const executionData = this.helpers.constructExecutionMetaData(
+						[
+							{
+								json: {},
+								binary: {
+									[binaryPropertyName]: binaryData,
+								},
+							},
+						] as INodeExecutionData[],
+						{ itemData: { item: itemIndex } },
+					);
+					returnData[0].push(...executionData);
 				} else {
 					return [];
 				}
