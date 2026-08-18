@@ -85,7 +85,7 @@ export const DESCRIPTION_NAMES_EN: IDescriptionNames = {
 	TABLE_VIEW_NAME: 'View Name',
 	PAGE_SIZE: 'Page Size',
 	PAGE_TOKEN: 'Page Token',
-	WHETHER_PAGING: 'Whether Paging',
+	WHETHER_PAGING: 'Enable Pagination',
 	NEW_NAME: 'New Name',
 	IS_ADVANCED: 'Turn on/off Advanced',
 	WHETHER_COPY_CONTENT: 'Copy the Content',

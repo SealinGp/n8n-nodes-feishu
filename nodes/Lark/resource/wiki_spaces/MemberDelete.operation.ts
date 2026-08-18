@@ -1,74 +1,75 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '删除知识空间成员',
+	name: WORDING.DeleteWikiSpaceMember,
 	value: 'deleteSpaceMember',
 	order: 97,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space-member/delete">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space-member/delete')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '知识空间ID',
+			displayName: WORDING.WikiSpaceId,
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: '成员ID',
+			displayName: WORDING.WikiMemberId,
 			name: 'member_id',
 			type: 'string',
 			required: true,
 			default: '',
-			description: '成员或管理员的ID，值的类型由成员类型参数决定',
+			description: WORDING.WikiAddMemberIdDescription,
 		},
 		{
-			displayName: '成员类型',
+			displayName: WORDING.WikiMemberType,
 			name: 'member_type',
 			type: 'options',
 			required: true,
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
-				{ name: '群ID', value: 'openchat' },
-				{ name: '用户ID', value: 'userid' },
-				{ name: '邮箱', value: 'email' },
-				{ name: '部门ID', value: 'opendepartmentid' },
+				{ name: WORDING.WikiGroupIdShort, value: 'openchat' },
+				{ name: WORDING.WikiUserId, value: 'userid' },
+				{ name: WORDING.WikiEmail, value: 'email' },
+				{ name: WORDING.WikiDepartmentId, value: 'opendepartmentid' },
 				{ name: 'Open ID', value: 'openid' },
 				{ name: 'Union ID', value: 'unionid' },
 			],
 			default: 'openid',
-			description: '要删除的成员或管理员身份类型',
+			description: WORDING.WikiDeleteMemberTypeDescription,
 		},
 		{
-			displayName: '角色',
+			displayName: WORDING.WikiRole,
 			name: 'member_role',
 			type: 'options',
 			required: true,
 			options: [
-				{ name: '管理员', value: 'admin' },
-				{ name: '成员', value: 'member' },
+				{ name: WORDING.WikiAdmin, value: 'admin' },
+				{ name: WORDING.WikiMember, value: 'member' },
 			],
 			default: 'member',
-			description: '成员的角色类型',
+			description: WORDING.WikiMemberRoleDescription,
 		},
 		{
-			displayName: '协作者类型',
+			displayName: WORDING.WikiCollaboratorType,
 			name: 'type',
 			type: 'options',
 			options: [
-				{ name: '用户', value: 'user' },
-				{ name: '群组', value: 'chat' },
-				{ name: '组织架构', value: 'department' },
+				{ name: WORDING.WikiUser, value: 'user' },
+				{ name: WORDING.WikiGroup, value: 'chat' },
+				{ name: WORDING.WikiDepartment, value: 'department' },
 			],
 			default: 'user',
-			description: '知识库协作者类型（暂不支持）',
+			description: WORDING.WikiCollaboratorTypeDescription,
 		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {

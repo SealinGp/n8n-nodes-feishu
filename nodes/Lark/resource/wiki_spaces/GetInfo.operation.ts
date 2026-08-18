@@ -1,52 +1,53 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '获取知识空间信息',
+	name: WORDING.GetWikiSpaceInfo,
 	value: 'getSpaceInfo',
 	order: 100,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space/get">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space/get')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '知识空间ID',
+			displayName: WORDING.WikiSpaceId,
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
-			description: '知识空间ID，可从知识空间列表获取。',
+			description: WORDING.WikiSpaceIdDescription,
 		},
 		{
-			displayName: '语言',
+			displayName: WORDING.WikiLanguage,
 			name: 'lang',
 			type: 'options',
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
-				{ name: '简体中文', value: 'zh' },
-				{ name: '印尼语', value: 'id' },
-				{ name: '德语', value: 'de' },
-				{ name: '英语', value: 'en' },
-				{ name: '西班牙语', value: 'es' },
-				{ name: '法语', value: 'fr' },
-				{ name: '意大利语', value: 'it' },
-				{ name: '葡萄牙语', value: 'pt' },
-				{ name: '越南语', value: 'vi' },
-				{ name: '俄语', value: 'ru' },
-				{ name: '印地语', value: 'hi' },
-				{ name: '泰语', value: 'th' },
-				{ name: '韩语', value: 'ko' },
-				{ name: '日语', value: 'ja' },
-				{ name: '繁体中文（中国香港）', value: 'zh-HK' },
-				{ name: '繁体中文（中国台湾）', value: 'zh-TW' },
+				{ name: WORDING.WikiSimplifiedChinese, value: 'zh' },
+				{ name: WORDING.WikiIndonesian, value: 'id' },
+				{ name: WORDING.WikiGerman, value: 'de' },
+				{ name: WORDING.WikiEnglish, value: 'en' },
+				{ name: WORDING.WikiSpanish, value: 'es' },
+				{ name: WORDING.WikiFrench, value: 'fr' },
+				{ name: WORDING.WikiItalian, value: 'it' },
+				{ name: WORDING.WikiPortuguese, value: 'pt' },
+				{ name: WORDING.WikiVietnamese, value: 'vi' },
+				{ name: WORDING.WikiRussian, value: 'ru' },
+				{ name: WORDING.WikiHindi, value: 'hi' },
+				{ name: WORDING.WikiThai, value: 'th' },
+				{ name: WORDING.WikiKorean, value: 'ko' },
+				{ name: WORDING.WikiJapanese, value: 'ja' },
+				{ name: WORDING.WikiTraditionalChineseHongKong, value: 'zh-HK' },
+				{ name: WORDING.WikiTraditionalChineseTaiwan, value: 'zh-TW' },
 			],
 			default: 'zh',
-			description: '返回的文档库名称展示语言。',
+			description: WORDING.WikiReturnedNameLanguageDescription,
 		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {

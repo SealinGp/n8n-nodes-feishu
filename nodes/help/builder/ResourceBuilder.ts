@@ -1,3 +1,4 @@
+import { WORDING } from '../wording';
 import { INodePropertyOptions } from 'n8n-workflow';
 import { IResource, ResourceOperation } from '../type/IResource';
 import { INodeProperties } from 'n8n-workflow';
@@ -26,7 +27,7 @@ class ResourceBuilder {
 
 		// This is a common property for all resources, so add it first
 		list.push({
-			displayName: 'Authentication',
+			displayName: WORDING.UiAuthentication,
 			name: 'authentication',
 			type: 'options',
 			default: `${Credentials.TenantToken}`,
@@ -43,7 +44,7 @@ class ResourceBuilder {
 		});
 
 		list.push({
-			displayName: 'Resource',
+			displayName: WORDING.UiResource,
 			name: 'resource',
 			type: 'options',
 			noDataExpression: true,
@@ -59,7 +60,7 @@ class ResourceBuilder {
 		for (const resource of this.resources) {
 			if (resource.operations.length === 0) continue;
 			list.push({
-				displayName: 'Operation',
+				displayName: WORDING.UiOperation,
 				name: 'operation',
 				type: 'options',
 				noDataExpression: true,

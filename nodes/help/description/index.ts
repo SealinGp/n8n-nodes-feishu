@@ -1,3 +1,4 @@
+import { WORDING } from '../wording';
 import { FileType, MessageType } from '../type/enums';
 import { OBJECT_JSON } from './base';
 import { DESCRIPTION_NAMES } from '../i18n/descriptions';
@@ -195,7 +196,7 @@ export const DESCRIPTIONS = {
 		required: true,
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Sheet',
@@ -206,7 +207,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter Sheet ID',
@@ -284,7 +285,7 @@ export const DESCRIPTIONS = {
 		required: true,
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Input event key word',
@@ -295,7 +296,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter ID',
@@ -342,7 +343,7 @@ export const DESCRIPTIONS = {
 		default: { mode: 'id', value: '' },
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Calendar',
@@ -353,7 +354,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter Calendar ID',
@@ -464,7 +465,7 @@ export const DESCRIPTIONS = {
 		default: { mode: 'id', value: '' },
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select File',
@@ -475,7 +476,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter File Token',
@@ -538,7 +539,7 @@ export const DESCRIPTIONS = {
 		required: true,
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Spreadsheet',
@@ -549,7 +550,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter Spreadsheet ID',
@@ -589,7 +590,7 @@ export const DESCRIPTIONS = {
 		description: 'Need to have the read permission of base role',
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Document',
@@ -600,7 +601,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter Document ID',
@@ -930,7 +931,7 @@ export const DESCRIPTIONS = {
 		description: 'Need to have the read permission of base role',
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Input phone number or email',
@@ -941,7 +942,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter ID',
@@ -974,7 +975,7 @@ export const DESCRIPTIONS = {
 		description: 'Need to have the read permission of base role',
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Role',
@@ -985,7 +986,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter Role ID',
@@ -1012,7 +1013,7 @@ export const DESCRIPTIONS = {
 		description: 'Need to have the permission to view the Base above',
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Field',
@@ -1023,7 +1024,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter Field ID',
@@ -1068,7 +1069,7 @@ export const DESCRIPTIONS = {
 		description: 'Need to have the permission to view the Base above',
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select View',
@@ -1079,7 +1080,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter View ID',
@@ -1188,7 +1189,7 @@ export const DESCRIPTIONS = {
 		description: 'Need to have the read permission of base role',
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Folder',
@@ -1199,7 +1200,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter Folder Token',
@@ -1250,7 +1251,7 @@ export const DESCRIPTIONS = {
 		description: 'Need to have the permission to view all files in my space',
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Base App',
@@ -1261,7 +1262,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter App Token',
@@ -1288,7 +1289,7 @@ export const DESCRIPTIONS = {
 		description: 'Need to have the permission to view the Base above',
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: WORDING.UiFromList,
 				name: 'list',
 				type: 'list',
 				placeholder: 'Select Table',
@@ -1299,7 +1300,7 @@ export const DESCRIPTIONS = {
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: WORDING.UiId,
 				name: 'id',
 				type: 'string',
 				placeholder: 'Enter Table ID',

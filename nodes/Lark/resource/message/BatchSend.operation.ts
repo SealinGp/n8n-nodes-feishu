@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -11,7 +12,7 @@ export default {
 	order: 198,
 	options: [
 		{
-			displayName: 'Message Type(消息类型)',
+			displayName: WORDING.UiMessageType,
 			name: 'msg_type',
 			type: 'options',
 			required: true,
@@ -26,7 +27,7 @@ export default {
 			default: 'text',
 		},
 		{
-			displayName: 'Content(消息内容)',
+			displayName: WORDING.UiContent,
 			name: 'content',
 			type: 'json',
 			required: true,
@@ -40,7 +41,7 @@ export default {
 			},
 		},
 		{
-			displayName: 'Card Content(卡片内容)',
+			displayName: WORDING.UiCardContent,
 			name: 'card',
 			type: 'json',
 			required: true,
@@ -53,28 +54,28 @@ export default {
 			},
 		},
 		{
-			displayName: 'Open IDs',
+			displayName: WORDING.UiOpenIds,
 			name: 'open_ids',
 			type: 'string',
 			default: '',
 			description: 'Comma-separated open_id list, max 200. At least one ID field is required.',
 		},
 		{
-			displayName: 'User IDs',
+			displayName: WORDING.UiUserIds,
 			name: 'user_ids',
 			type: 'string',
 			default: '',
 			description: 'Comma-separated user_id list, max 200',
 		},
 		{
-			displayName: 'Union IDs',
+			displayName: WORDING.UiUnionIds,
 			name: 'union_ids',
 			type: 'string',
 			default: '',
 			description: 'Comma-separated union_id list, max 200',
 		},
 		{
-			displayName: 'Department IDs',
+			displayName: WORDING.UiDepartmentIds,
 			name: 'department_ids',
 			type: 'string',
 			default: '',
@@ -82,7 +83,7 @@ export default {
 				'Comma-separated department_id list, max 200. Root department (ID 0) is not allowed.',
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/im-v1/batch_message/send-messages-in-batches">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/im-v1/batch_message/send-messages-in-batches')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

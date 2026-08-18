@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { DateTime } from 'luxon';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -14,7 +15,7 @@ export default {
 		DESCRIPTIONS.USER_ID_TYPE,
 		{
 			...DESCRIPTIONS.MEMBER_ID,
-			displayName: 'User ID(用户 ID)',
+			displayName: WORDING.UiUserId,
 			name: 'user_id',
 		},
 		DESCRIPTIONS.START_TIME,
@@ -28,7 +29,7 @@ export default {
 			options: [DESCRIPTIONS.INCLUDE_EXTERNAL_CALENDAR, DESCRIPTIONS.ONLY_BUSY],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/calendar-v4/calendar/list">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/calendar-v4/calendar/list')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

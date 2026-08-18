@@ -1,21 +1,22 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 import RequestUtils from '../../../help/utils/RequestUtils';
 
 export default {
-	name: 'Get Tasks in Tasklist | 获取清单任务列表',
+	name: WORDING.GetTasklistTasks,
 	value: 'getTasklistTasks',
 	order: 94,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/task-v2/tasklist/tasks">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/task-v2/tasklist/tasks')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: 'Tasklist GUID(清单 GUID)',
+			displayName: WORDING.LabelTasklistGUID,
 			name: 'tasklist_guid',
 			type: 'string',
 			required: true,
@@ -23,7 +24,7 @@ export default {
 			description: 'GUID of the tasklist to query tasks from',
 		},
 		{
-			displayName: 'User ID Type(用户 ID 类型)',
+			displayName: WORDING.LabelUserIDType,
 			name: 'user_id_type',
 			type: 'options',
 			options: [
@@ -34,7 +35,7 @@ export default {
 			default: 'open_id',
 		},
 		{
-			displayName: 'Return All(返回全部)',
+			displayName: WORDING.LabelReturnAll,
 			name: 'return_all',
 			type: 'boolean',
 			default: true,
@@ -42,7 +43,7 @@ export default {
 				'Whether to auto-paginate and return all tasks in the tasklist. When disabled, only one page is returned.',
 		},
 		{
-			displayName: 'Page Size(分页大小)',
+			displayName: WORDING.LabelPageSize,
 			name: 'page_size',
 			type: 'number',
 			typeOptions: {
@@ -54,7 +55,7 @@ export default {
 			description: 'Number of tasks per page (max 100)',
 		},
 		{
-			displayName: 'Page Token(分页标记)',
+			displayName: WORDING.LabelPageToken,
 			name: 'page_token',
 			type: 'string',
 			typeOptions: { password: true },
@@ -67,14 +68,14 @@ export default {
 			},
 		},
 		{
-			displayName: 'Options(可选参数)',
+			displayName: WORDING.LabelOptions,
 			name: 'options',
 			type: 'collection',
 			placeholder: 'Add Field',
 			default: {},
 			options: [
 				{
-					displayName: 'Completed(是否完成)',
+					displayName: WORDING.LabelCompleted,
 					name: 'completed',
 					type: 'options',
 					options: [
@@ -86,7 +87,7 @@ export default {
 					description: 'Filter by completion status',
 				},
 				{
-					displayName: 'Created From(任务创建起始时间)',
+					displayName: WORDING.LabelCreatedFrom,
 					name: 'created_from',
 					type: 'string',
 					default: '',
@@ -94,7 +95,7 @@ export default {
 						'Filter tasks created at or after this timestamp (millisecond, e.g. 1675844827000)',
 				},
 				{
-					displayName: 'Created To(任务创建结束时间)',
+					displayName: WORDING.LabelCreatedTo,
 					name: 'created_to',
 					type: 'string',
 					default: '',
@@ -105,7 +106,7 @@ export default {
 		},
 		{
 			displayName:
-				'<a target="_blank" href="https://open.feishu.cn/document/task-v2/tasklist/tasks">Open Document</a>',
+				`<a target="_blank" href="${getDocumentationUrl('/document/task-v2/tasklist/tasks')}">Open Document</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

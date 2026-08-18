@@ -19,7 +19,7 @@ import RequestUtils from '../help/utils/RequestUtils';
 
 export class LarkTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Lark Trigger',
+		displayName: WORDING.UiLarkTrigger,
 		name: 'larkTrigger',
 		icon: 'file:lark_icon.svg',
 		group: ['trigger'],
@@ -45,7 +45,7 @@ export class LarkTrigger implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Authentication',
+				displayName: WORDING.UiAuthentication,
 				name: 'authentication',
 				type: 'options',
 				default: `${Credentials.TenantToken}`,
@@ -57,8 +57,7 @@ export class LarkTrigger implements INodeType {
 				],
 			},
 			{
-				displayName:
-					'This trigger only supports Feishu China. And due to Lark API limitations, you can use just one Lark trigger for each lark bot at a time.',
+				displayName: WORDING.UiThisTriggerOnlySupportsFeishuChinaAndDueToLarkApiLimitationsYouCanUseJustOneLarkTriggerForEachLarkBotAtATime,
 				name: 'LarkTriggerNotice',
 				type: 'notice',
 				default: '',
@@ -72,7 +71,7 @@ export class LarkTrigger implements INodeType {
 				default: {},
 				options: [
 					{
-						displayName: 'Subscription Docs Event(订阅云文档事件)',
+						displayName: WORDING.UiSubscriptionDocsEvent,
 						name: 'subscriptionEventsUi',
 						placeholder: 'Add New Subscription',
 						type: 'fixedCollection',
@@ -83,10 +82,10 @@ export class LarkTrigger implements INodeType {
 						options: [
 							{
 								name: 'eventValues',
-								displayName: 'New Subscription',
+								displayName: WORDING.UiNewSubscription,
 								values: [
 									{
-										displayName: 'File Type(文件类型)',
+										displayName: WORDING.UiFileType,
 										name: 'type',
 										type: 'options',
 										required: true,
@@ -115,7 +114,7 @@ export class LarkTrigger implements INodeType {
 										],
 									},
 									{
-										displayName: 'File Token(文件唯一标识)',
+										displayName: WORDING.UiFileToken,
 										name: 'fileId',
 										required: true,
 										type: 'string',
@@ -128,14 +127,14 @@ export class LarkTrigger implements INodeType {
 						],
 					},
 					{
-						displayName: 'Unsubscribe on Deactivate | 停用时取消订阅',
+						displayName: WORDING.UiUnsubscribeOnDeactivate,
 						name: 'unsubscribeOnDeactivate',
 						type: 'boolean',
 						default: false,
 						description: 'Whether to unsubscribe the events on deactivation',
 					},
 					{
-						displayName: 'Callback Toast | 回调提示',
+						displayName: WORDING.UiCallbackToast,
 						name: 'callbackToast',
 						type: 'string',
 						default: '',
@@ -145,8 +144,7 @@ export class LarkTrigger implements INodeType {
 				],
 			},
 			{
-				displayName:
-					'Before adding this event, please ensure that you have add the subscription in the options field. <a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/drive-v1/event/subscribe">Open Documentation</a>',
+				displayName: WORDING.UiBeforeAddingThisEventPleaseEnsureThatYouHaveAddTheSubscriptionInTheOptionsFieldATargetBlankHrefHttpsOpenFeishuCnDocumentServerDocsDocsDriveV1EventSubscribeOpenDocumentationA,
 				name: 'subscriptionNotice',
 				type: 'notice',
 				default: '',

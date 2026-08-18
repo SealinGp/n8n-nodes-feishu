@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
@@ -5,31 +6,31 @@ import NodeUtils from '../../../help/utils/node';
 import RequestUtils from '../../../help/utils/RequestUtils';
 
 export default {
-	name: 'Create Task | 创建任务',
+	name: WORDING.CreateTask,
 	value: 'create',
 	order: 100,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/task-v2/task/create">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/task-v2/task/create')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: 'Task Title(任务标题)',
+			displayName: WORDING.LabelTaskTitle,
 			name: 'summary',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: 'Task Description(任务摘要)',
+			displayName: WORDING.LabelTaskDescription,
 			name: 'description',
 			type: 'string',
 			default: '',
 		},
 		{
-			displayName: 'User ID Type(用户 ID 类型)',
+			displayName: WORDING.LabelUserIDType,
 			name: 'user_id_type',
 			type: 'options',
 			options: [
@@ -40,7 +41,7 @@ export default {
 			default: 'open_id',
 		},
 		{
-			displayName: 'Request Body(请求体)',
+			displayName: WORDING.LabelRequestBody,
 			name: 'body',
 			type: 'json',
 			required: true,

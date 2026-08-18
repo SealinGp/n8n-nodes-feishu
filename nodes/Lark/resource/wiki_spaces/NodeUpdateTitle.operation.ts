@@ -1,28 +1,29 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '更新知识空间节点标题',
+	name: WORDING.UpdateWikiNodeTitle,
 	value: 'updateSpaceNodeTitle',
 	order: 90,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space-node/update_title">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space-node/update_title')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '知识空间ID',
+			displayName: WORDING.WikiSpaceId,
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: '节点Token',
+			displayName: WORDING.WikiNodeToken,
 			name: 'node_token',
 			type: 'string',
 			typeOptions: { password: true },
@@ -30,12 +31,12 @@ export default {
 			default: '',
 		},
 		{
-			displayName: '新标题',
+			displayName: WORDING.WikiNewTitle,
 			name: 'title',
 			type: 'string',
 			required: true,
 			default: '',
-			description: '节点新标题',
+			description: WORDING.WikiNodeTitleDescription,
 		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {

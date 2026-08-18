@@ -1,3 +1,4 @@
+import { WORDING } from '../help/wording';
 import {
 	IExecuteFunctions,
 	INodeListSearchResult,
@@ -30,7 +31,7 @@ const resourceBuilder = ResourceFactory.build(__dirname);
 
 export class Lark implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Lark',
+		displayName: WORDING.UiLark,
 		name: 'lark',
 		icon: 'file:lark_icon.svg',
 		group: ['input'],

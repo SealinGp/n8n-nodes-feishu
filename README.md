@@ -1,247 +1,253 @@
-[English](./README-EN.md)
+[中文](./README-CN.md)
 
-# n8n-nodes-feishu-api
+# n8n-nodes-feishu-api-en
 
-本项目 fork 自 [n8n-nodes-feishu-lark](https://github.com/zhgqthomas/n8n-nodes-feishu-lark)，感谢原作者的开源贡献。在原有功能基础上修复了若干问题并新增了知识空间、任务、审批等资源支持。
+This project is forked from [@zhgqthomas/n8n-nodes-feishu-lark](https://github.com/zhgqthomas/n8n-nodes-feishu-lark) → [@SealinGp/n8n-nodes-feishu-api](https://github.com/SealinGp/n8n-nodes-feishu-api) → . Thanks to the original authors for their open-source contribution. This fork adds missing English translations on top of necessary refactorings for  proper multilingual operation.
 
 ---
 
-## 安装
+## Installation
 
-在 n8n 的 **Settings → Community Nodes** 中填入：
+Add in n8n environment:
 
 ```
-n8n-nodes-feishu-api
+N8N_DEFAULT_LOCALE=en
+```
+
+In n8n **Settings → Community Nodes**, enter:
+
+```
+n8n-nodes-feishu-api-en
 ```
 
 ---
 
-## Credentials 配置
+## Credentials
 
-### Tenant Access Token（应用身份）
-选择 `Lark Tenant Token API`，填入飞书应用后台的 `App ID` 和 `App Secret`。
+### Tenant Access Token (App Identity)
+Select `Lark Tenant Token API` and fill in `App ID` and `App Secret` from the Feishu app console.
 
-### User Access Token（用户身份，OAuth2）
-选择 `Lark OAuth2 API`，填入 `App ID`（Client ID）和 `App Secret`（Client Secret）。将生成的 `OAuth Redirect URL` 配置到飞书后台「安全设置 → 重定向 URL」，并在「权限管理」中开通所需权限后填入 `Scope`（如 `base:app:create,offline_access`）。
+### User Access Token (OAuth2)
+Select `Lark OAuth2 API`, fill in `App ID` (Client ID) and `App Secret` (Client Secret). Configure the generated `OAuth Redirect URL` in the Feishu app console under Security Settings → Redirect URL, and add the required scopes (e.g. `base:app:create,offline_access`).
 
-> 建议开通 `offline_access`，以便 n8n 通过 refresh token 自动续签。
-
----
-
-## 事件触发（Trigger）
-
-- **WebSocket**（推荐，仅飞书国内版）：添加 `Lark Trigger` 节点，配置 `Lark Tenant Token API` Credential 即可。
-- **Webhook**（国际版 Lark）：使用 `Parse Webhook Message` operation 配合 n8n 官方 `Webhook` + `Respond to Webhook` 节点。
+> Enable `offline_access` so n8n can auto-refresh expired access tokens.
 
 ---
 
-## 支持的飞书接口
+## Triggers
 
-### 消息（Message）
-
-| 操作 | API |
-|------|-----|
-| 发送消息 | `POST /open-apis/im/v1/messages` |
-| 批量发送消息 | `POST /open-apis/im/v1/batch_messages` |
-| 回复消息 | `POST /open-apis/im/v1/messages/:message_id/reply` |
-| 编辑消息 | `PUT /open-apis/im/v1/messages/:message_id` |
-| 转发消息 | `POST /open-apis/im/v1/messages/:message_id/forward` |
-| 撤回消息 | `DELETE /open-apis/im/v1/messages/:message_id` |
-| 获取消息内容 | `GET /open-apis/im/v1/messages/:message_id` |
-| 获取消息资源文件 | `GET /open-apis/im/v1/messages/:message_id/resources/:file_key` |
-| 解析消息内容 | *(本地解析，无独立接口)* |
-| 上传图片 | `POST /open-apis/im/v1/images` |
-| 下载图片 | `GET /open-apis/im/v1/images/:image_key` |
-| 上传文件 | `POST /open-apis/im/v1/files` |
-| 下载文件 | `GET /open-apis/im/v1/files/:file_key` |
-| 发送特定可见卡片 | `POST /open-apis/ephemeral/v1/send` |
-| 更新卡片消息 | `PUT /open-apis/im/v1/messages/:message_id` |
-| 删除特定可见卡片 | `POST /open-apis/ephemeral/v1/delete` |
-| 延时更新消息卡片 | `POST /open-apis/interactive/v1/card/update` |
-| 发送并等待 | `POST /open-apis/im/v1/messages` |
-| 发送流式消息 | `POST /open-apis/im/v1/messages` |
-| 解析 Webhook 消息 | *(本地解析，无独立接口)* |
-
-### 文档（Document）
-
-| 操作 | API |
-|------|-----|
-| 创建文档 | `POST /open-apis/docx/v1/documents` |
-| 获取文档信息 | `GET /open-apis/docx/v1/documents/:document_id` |
-| 获取纯文本内容 | `GET /open-apis/docx/v1/documents/:document_id/raw_content` |
-| 获取块列表 | `GET /open-apis/docx/v1/documents/:document_id/blocks` |
-| 创建块 | `POST /open-apis/docx/v1/documents/:document_id/blocks/:block_id/children` |
-| 创建嵌套块 | `POST /open-apis/docx/v1/documents/:document_id/blocks/:block_id/descendant` |
-| 更新块内容 | `PATCH /open-apis/docx/v1/documents/:document_id/blocks/:block_id` |
-| 获取块内容 | `GET /open-apis/docx/v1/documents/:document_id/blocks/:block_id` |
-| 删除块 | `DELETE /open-apis/docx/v1/documents/:document_id/blocks/:block_id/children/batch_delete` |
-| Markdown/HTML 转换为块 | `POST /open-apis/docx/v1/documents/blocks/convert` |
-
-### 云空间（Space）
-
-| 操作 | API |
-|------|-----|
-| 创建文件夹 | `POST /open-apis/drive/v1/files/create_folder` |
-| 删除文件或文件夹 | `DELETE /open-apis/drive/v1/files/:file_token` |
-| 获取文件列表 | `GET /open-apis/drive/v1/files` |
-| 搜索文件 | `POST /open-apis/suite/docs-api/search/object` |
-| 上传文件 | `POST /open-apis/drive/v1/files/upload_all` |
-| 上传素材 | `POST /open-apis/drive/v1/medias/upload_all` |
-| 下载素材 | `GET /open-apis/drive/v1/medias/:file_token/download` |
-| 获取素材临时下载链接 | `POST /open-apis/drive/v1/medias/batch_get_tmp_download_url` |
-
-### 知识空间（Wiki）
-
-| 操作 | API |
-|------|-----|
-| 获取知识空间列表 | `GET /open-apis/wiki/v2/spaces` |
-| 获取知识空间信息 | `GET /open-apis/wiki/v2/spaces/:space_id` |
-| 更新知识空间设置 | `PUT /open-apis/wiki/v2/spaces/:space_id/setting` |
-| 获取成员列表 | `GET /open-apis/wiki/v2/spaces/:space_id/members` |
-| 添加成员 | `POST /open-apis/wiki/v2/spaces/:space_id/members` |
-| 删除成员 | `DELETE /open-apis/wiki/v2/spaces/:space_id/members/:member_id` |
-| 获取节点信息 | `GET /open-apis/wiki/v2/spaces/get_node` |
-| 获取子节点列表 | `GET /open-apis/wiki/v2/spaces/:space_id/nodes` |
-| 创建节点 | `POST /open-apis/wiki/v2/spaces/:space_id/nodes` |
-| 复制节点 | `POST /open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/copy` |
-| 移动节点 | `POST /open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/move` |
-| 更新节点标题 | `PUT /open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/update_title` |
-
-### 多维表格（Base）
-
-| 操作 | API |
-|------|-----|
-| 创建多维表格 | `POST /open-apis/bitable/v1/apps` |
-| 复制多维表格 | `POST /open-apis/bitable/v1/apps/:app_token/copy` |
-| 获取元数据 | `GET /open-apis/bitable/v1/apps/:app_token` |
-| 更新元数据 | `PUT /open-apis/bitable/v1/apps/:app_token` |
-| 新增数据表 | `POST /open-apis/bitable/v1/apps/:app_token/tables` |
-| 批量创建数据表 | `POST /open-apis/bitable/v1/apps/:app_token/tables/batch_create` |
-| 更新数据表 | `PUT /open-apis/bitable/v1/apps/:app_token/tables/:table_id` |
-| 列出数据表 | `GET /open-apis/bitable/v1/apps/:app_token/tables` |
-| 删除数据表 | `DELETE /open-apis/bitable/v1/apps/:app_token/tables/:table_id` |
-| 批量删除数据表 | `POST /open-apis/bitable/v1/apps/:app_token/tables/batch_delete` |
-| 新增视图 | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views` |
-| 更新视图 | `PUT /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id` |
-| 列出视图 | `GET /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views` |
-| 获取视图 | `GET /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id` |
-| 删除视图 | `DELETE /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id` |
-| 新增记录 | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records` |
-| 更新记录 | `PUT /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/:record_id` |
-| 查询记录 | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/search` |
-| 批量获取记录 | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_get` |
-| 删除记录 | `DELETE /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/:record_id` |
-| 批量新增记录 | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_create` |
-| 批量更新记录 | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_update` |
-| 批量删除记录 | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_delete` |
-| 新增字段 | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields` |
-| 更新字段 | `PUT /open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id` |
-| 列出字段 | `GET /open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields` |
-| 删除字段 | `DELETE /open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id` |
-| 新增自定义角色 | `POST /open-apis/bitable/v1/apps/:app_token/roles` |
-| 更新自定义角色 | `PUT /open-apis/bitable/v1/apps/:app_token/roles/:role_id` |
-| 列出自定义角色 | `GET /open-apis/bitable/v1/apps/:app_token/roles` |
-| 删除自定义角色 | `DELETE /open-apis/bitable/v1/apps/:app_token/roles/:role_id` |
-| 新增协作者 | `POST /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members` |
-| 批量新增协作者 | `POST /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/batch_create` |
-| 列出协作者 | `GET /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members` |
-| 删除协作者 | `DELETE /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/:member_id` |
-| 批量删除协作者 | `POST /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/batch_delete` |
-
-### 表格（Spreadsheet）
-
-| 操作 | API |
-|------|-----|
-| 创建电子表格 | `POST /open-apis/sheets/v3/spreadsheets` |
-| 更新电子表格 | `PUT /open-apis/sheets/v3/spreadsheets/:spreadsheet_id` |
-| 获取电子表格信息 | `GET /open-apis/sheets/v3/spreadsheets/:spreadsheet_id` |
-| 新建工作表 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/sheets_batch_update` |
-| 复制工作表 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/sheets_batch_update` |
-| 删除工作表 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/sheets_batch_update` |
-| 更新工作表 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/sheets_batch_update` |
-| 获取工作表列表 | `GET /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/query` |
-| 获取工作表信息 | `GET /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/:sheet_id` |
-| 增加行列 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/dimension_range` |
-| 插入行列 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/insert_dimension_range` |
-| 更新行列 | `PUT /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/dimension_range` |
-| 移动行列 | `POST /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/:sheet_id/move_dimension` |
-| 删除行列 | `DELETE /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/dimension_range` |
-| 合并单元格 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/merge_cells` |
-| 拆分单元格 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/unmerge_cells` |
-| 查找单元格 | `POST /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/:sheet_id/find` |
-| 替换单元格 | `POST /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/:sheet_id/replace` |
-| 设置单元格样式 | `PUT /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/style` |
-| 插入数据 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values_prepend` |
-| 追加数据 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values_append` |
-| 插入图片 | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values_image` |
-| 读取数据 | `GET /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values/:range` |
-| 写入数据 | `PUT /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values` |
-
-### 日历（Calendar）
-
-| 操作 | API |
-|------|-----|
-| 创建共享日历 | `POST /open-apis/calendar/v4/calendars` |
-| 删除共享日历 | `DELETE /open-apis/calendar/v4/calendars/:calendar_id` |
-| 获取主日历信息 | `GET /open-apis/calendar/v4/calendars/primary` |
-| 获取日历信息 | `GET /open-apis/calendar/v4/calendars/:calendar_id` |
-| 获取日历列表 | `GET /open-apis/calendar/v4/calendars` |
-| 更新日历信息 | `PUT /open-apis/calendar/v4/calendars/:calendar_id` |
-| 搜索日历 | `POST /open-apis/calendar/v4/calendars/search` |
-| 获取日程忙闲信息 | `POST /open-apis/calendar/v4/freebusy/list` |
-| 创建日程 | `POST /open-apis/calendar/v4/calendars/:calendar_id/events` |
-| 删除日程 | `DELETE /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id` |
-| 搜索日程 | `POST /open-apis/calendar/v4/calendars/:calendar_id/events/search` |
-| 获取日程 | `GET /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id` |
-| 获取日程列表 | `GET /open-apis/calendar/v4/calendars/:calendar_id/events` |
-| 更新日程 | `PUT /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id` |
-| 添加日程参与人 | `POST /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees` |
-| 删除日程参与人 | `POST /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees/batch_delete` |
-| 获取日程参与人列表 | `GET /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees` |
-| 创建会议群 | `POST /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/meeting_chat` |
-| 解绑会议群 | `DELETE /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/meeting_chat` |
-
-### 通讯录（Contacts）
-
-| 操作 | API |
-|------|-----|
-| 批量获取用户信息 | `POST /open-apis/contact/v3/users/batch_get_id` |
-| 获取用户信息 | `GET /open-apis/contact/v3/users/:user_id` |
-
-### 审批（Approval）
-
-| 操作 | API |
-|------|-----|
-| 创建审批实例 | `POST /open-apis/approval/v4/instances` |
-| 获取审批实例 | `GET /open-apis/approval/v4/instances/:instance_code` |
-
-### 任务（Task）
-
-| 操作 | API |
-|------|-----|
-| 创建任务 | `POST /open-apis/task/v2/tasks` |
-| 更新任务 | `PUT /open-apis/task/v2/tasks/:task_guid` |
-| 获取任务详情 | `GET /open-apis/task/v2/tasks/:task_guid` |
-| 列取任务列表 | `GET /open-apis/task/v2/tasks` |
-| 获取清单任务列表 | `GET /open-apis/task/v2/tasklists/:tasklist_guid/tasks` |
-| 删除任务 | `DELETE /open-apis/task/v2/tasks/:task_guid` |
-| 添加任务成员 | `POST /open-apis/task/v2/tasks/:task_guid/add_members` |
-| 移除任务成员 | `POST /open-apis/task/v2/tasks/:task_guid/remove_members` |
+- **WebSocket** (recommended, Feishu China only): Add a `Lark Trigger` node with a `Lark Tenant Token API` credential.
+- **Webhook** (Lark international): Use `Parse Webhook Message` operation together with n8n's `Webhook` + `Respond to Webhook` nodes.
 
 ---
 
-## 开发
+## Supported Feishu APIs
+
+### Message
+
+| Operation | API |
+|-----------|-----|
+| Send | `POST /open-apis/im/v1/messages` |
+| Batch Send | `POST /open-apis/im/v1/batch_messages` |
+| Reply | `POST /open-apis/im/v1/messages/:message_id/reply` |
+| Edit | `PUT /open-apis/im/v1/messages/:message_id` |
+| Forward | `POST /open-apis/im/v1/messages/:message_id/forward` |
+| Recall | `DELETE /open-apis/im/v1/messages/:message_id` |
+| Get Content Info | `GET /open-apis/im/v1/messages/:message_id` |
+| Get Content Resource | `GET /open-apis/im/v1/messages/:message_id/resources/:file_key` |
+| Parse Content | *(local parsing, no dedicated endpoint)* |
+| Upload Image | `POST /open-apis/im/v1/images` |
+| Download Image | `GET /open-apis/im/v1/images/:image_key` |
+| Upload File | `POST /open-apis/im/v1/files` |
+| Download File | `GET /open-apis/im/v1/files/:file_key` |
+| Send Limited Card | `POST /open-apis/ephemeral/v1/send` |
+| Update Card | `PUT /open-apis/im/v1/messages/:message_id` |
+| Delete Limited Card | `POST /open-apis/ephemeral/v1/delete` |
+| Update Interactive Card | `POST /open-apis/interactive/v1/card/update` |
+| Send and Wait | `POST /open-apis/im/v1/messages` |
+| Send Stream Message | `POST /open-apis/im/v1/messages` |
+| Parse Webhook Message | *(local parsing, no dedicated endpoint)* |
+
+### Document
+
+| Operation | API |
+|-----------|-----|
+| Create | `POST /open-apis/docx/v1/documents` |
+| Get Info | `GET /open-apis/docx/v1/documents/:document_id` |
+| Get Raw Content | `GET /open-apis/docx/v1/documents/:document_id/raw_content` |
+| Get Block List | `GET /open-apis/docx/v1/documents/:document_id/blocks` |
+| Create Block | `POST /open-apis/docx/v1/documents/:document_id/blocks/:block_id/children` |
+| Create Nested Block | `POST /open-apis/docx/v1/documents/:document_id/blocks/:block_id/descendant` |
+| Update Block | `PATCH /open-apis/docx/v1/documents/:document_id/blocks/:block_id` |
+| Get Block | `GET /open-apis/docx/v1/documents/:document_id/blocks/:block_id` |
+| Delete Block | `DELETE /open-apis/docx/v1/documents/:document_id/blocks/:block_id/children/batch_delete` |
+| Markdown/HTML Convert to Block | `POST /open-apis/docx/v1/documents/blocks/convert` |
+
+### Space (Drive)
+
+| Operation | API |
+|-----------|-----|
+| Create Folder | `POST /open-apis/drive/v1/files/create_folder` |
+| Delete File or Folder | `DELETE /open-apis/drive/v1/files/:file_token` |
+| Get File List | `GET /open-apis/drive/v1/files` |
+| Search Files | `POST /open-apis/suite/docs-api/search/object` |
+| Upload File | `POST /open-apis/drive/v1/files/upload_all` |
+| Upload Media | `POST /open-apis/drive/v1/medias/upload_all` |
+| Download Media | `GET /open-apis/drive/v1/medias/:file_token/download` |
+| Get Media Temp Download Link | `POST /open-apis/drive/v1/medias/batch_get_tmp_download_url` |
+
+### Wiki Spaces
+
+| Operation | API |
+|-----------|-----|
+| Get Space List | `GET /open-apis/wiki/v2/spaces` |
+| Get Space Info | `GET /open-apis/wiki/v2/spaces/:space_id` |
+| Update Space Setting | `PUT /open-apis/wiki/v2/spaces/:space_id/setting` |
+| Get Members | `GET /open-apis/wiki/v2/spaces/:space_id/members` |
+| Add Member | `POST /open-apis/wiki/v2/spaces/:space_id/members` |
+| Delete Member | `DELETE /open-apis/wiki/v2/spaces/:space_id/members/:member_id` |
+| Get Node Info | `GET /open-apis/wiki/v2/spaces/get_node` |
+| Get Child Nodes | `GET /open-apis/wiki/v2/spaces/:space_id/nodes` |
+| Create Node | `POST /open-apis/wiki/v2/spaces/:space_id/nodes` |
+| Copy Node | `POST /open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/copy` |
+| Move Node | `POST /open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/move` |
+| Update Node Title | `PUT /open-apis/wiki/v2/spaces/:space_id/nodes/:node_token/update_title` |
+
+### Base (Bitable)
+
+| Operation | API |
+|-----------|-----|
+| Create App | `POST /open-apis/bitable/v1/apps` |
+| Copy App | `POST /open-apis/bitable/v1/apps/:app_token/copy` |
+| Get App Info | `GET /open-apis/bitable/v1/apps/:app_token` |
+| Update App Info | `PUT /open-apis/bitable/v1/apps/:app_token` |
+| Create Table | `POST /open-apis/bitable/v1/apps/:app_token/tables` |
+| Batch Create Tables | `POST /open-apis/bitable/v1/apps/:app_token/tables/batch_create` |
+| Update Table | `PUT /open-apis/bitable/v1/apps/:app_token/tables/:table_id` |
+| Get Tables | `GET /open-apis/bitable/v1/apps/:app_token/tables` |
+| Delete Table | `DELETE /open-apis/bitable/v1/apps/:app_token/tables/:table_id` |
+| Batch Delete Tables | `POST /open-apis/bitable/v1/apps/:app_token/tables/batch_delete` |
+| Create View | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views` |
+| Update View | `PUT /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id` |
+| Get Views | `GET /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views` |
+| Get View Info | `GET /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id` |
+| Delete View | `DELETE /open-apis/bitable/v1/apps/:app_token/tables/:table_id/views/:view_id` |
+| Create Record | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records` |
+| Update Record | `PUT /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/:record_id` |
+| Search Records | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/search` |
+| Get Records | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_get` |
+| Delete Record | `DELETE /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/:record_id` |
+| Batch Create Records | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_create` |
+| Batch Update Records | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_update` |
+| Batch Delete Records | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/records/batch_delete` |
+| Create Field | `POST /open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields` |
+| Update Field | `PUT /open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id` |
+| Get Fields | `GET /open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields` |
+| Delete Field | `DELETE /open-apis/bitable/v1/apps/:app_token/tables/:table_id/fields/:field_id` |
+| Create Role | `POST /open-apis/bitable/v1/apps/:app_token/roles` |
+| Update Role | `PUT /open-apis/bitable/v1/apps/:app_token/roles/:role_id` |
+| Get Roles | `GET /open-apis/bitable/v1/apps/:app_token/roles` |
+| Delete Role | `DELETE /open-apis/bitable/v1/apps/:app_token/roles/:role_id` |
+| Create Role Member | `POST /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members` |
+| Batch Create Role Members | `POST /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/batch_create` |
+| Get Role Members | `GET /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members` |
+| Delete Role Member | `DELETE /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/:member_id` |
+| Batch Delete Role Members | `POST /open-apis/bitable/v1/apps/:app_token/roles/:role_id/members/batch_delete` |
+
+### Spreadsheet
+
+| Operation | API |
+|-----------|-----|
+| Create | `POST /open-apis/sheets/v3/spreadsheets` |
+| Update | `PUT /open-apis/sheets/v3/spreadsheets/:spreadsheet_id` |
+| Get Info | `GET /open-apis/sheets/v3/spreadsheets/:spreadsheet_id` |
+| Create Sheet | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/sheets_batch_update` |
+| Copy Sheet | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/sheets_batch_update` |
+| Delete Sheet | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/sheets_batch_update` |
+| Update Sheet | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/sheets_batch_update` |
+| Get Sheet List | `GET /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/query` |
+| Get Sheet Info | `GET /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/:sheet_id` |
+| Create Dimension | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/dimension_range` |
+| Insert Dimension | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/insert_dimension_range` |
+| Update Dimension | `PUT /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/dimension_range` |
+| Move Dimension | `POST /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/:sheet_id/move_dimension` |
+| Delete Dimension | `DELETE /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/dimension_range` |
+| Merge Cells | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/merge_cells` |
+| Split Cells | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/unmerge_cells` |
+| Find Cells | `POST /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/:sheet_id/find` |
+| Replace Cells | `POST /open-apis/sheets/v3/spreadsheets/:spreadsheet_id/sheets/:sheet_id/replace` |
+| Set Cell Style | `PUT /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/style` |
+| Insert Values | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values_prepend` |
+| Append Values | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values_append` |
+| Insert Image | `POST /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values_image` |
+| Read Values | `GET /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values/:range` |
+| Write Values | `PUT /open-apis/sheets/v2/spreadsheets/:spreadsheet_id/values` |
+
+### Calendar
+
+| Operation | API |
+|-----------|-----|
+| Create Calendar | `POST /open-apis/calendar/v4/calendars` |
+| Delete Calendar | `DELETE /open-apis/calendar/v4/calendars/:calendar_id` |
+| Get Primary Info | `GET /open-apis/calendar/v4/calendars/primary` |
+| Get Info | `GET /open-apis/calendar/v4/calendars/:calendar_id` |
+| Get List | `GET /open-apis/calendar/v4/calendars` |
+| Update Calendar | `PUT /open-apis/calendar/v4/calendars/:calendar_id` |
+| Search Calendar | `POST /open-apis/calendar/v4/calendars/search` |
+| Availability | `POST /open-apis/calendar/v4/freebusy/list` |
+| Create Event | `POST /open-apis/calendar/v4/calendars/:calendar_id/events` |
+| Delete Event | `DELETE /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id` |
+| Search Event | `POST /open-apis/calendar/v4/calendars/:calendar_id/events/search` |
+| Get Event | `GET /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id` |
+| Get Event List | `GET /open-apis/calendar/v4/calendars/:calendar_id/events` |
+| Update Event | `PUT /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id` |
+| Create Event Attendee | `POST /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees` |
+| Delete Event Attendee | `POST /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees/batch_delete` |
+| Get Event Attendee List | `GET /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/attendees` |
+| Create Meeting Chat | `POST /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/meeting_chat` |
+| Unbind Meeting Chat | `DELETE /open-apis/calendar/v4/calendars/:calendar_id/events/:event_id/meeting_chat` |
+
+### Contacts
+
+| Operation | API |
+|-----------|-----|
+| Batch Get User Info | `POST /open-apis/contact/v3/users/batch_get_id` |
+| Get User Info | `GET /open-apis/contact/v3/users/:user_id` |
+
+### Approval
+
+| Operation | API |
+|-----------|-----|
+| Create Approval Instance | `POST /open-apis/approval/v4/instances` |
+| Get Approval Instance | `GET /open-apis/approval/v4/instances/:instance_code` |
+
+### Task
+
+| Operation | API |
+|-----------|-----|
+| Create | `POST /open-apis/task/v2/tasks` |
+| Update | `PUT /open-apis/task/v2/tasks/:task_guid` |
+| Get Info | `GET /open-apis/task/v2/tasks/:task_guid` |
+| Get List | `GET /open-apis/task/v2/tasks` |
+| Get Tasks in Tasklist | `GET /open-apis/task/v2/tasklists/:tasklist_guid/tasks` |
+| Delete | `DELETE /open-apis/task/v2/tasks/:task_guid` |
+| Add Members | `POST /open-apis/task/v2/tasks/:task_guid/add_members` |
+| Remove Members | `POST /open-apis/task/v2/tasks/:task_guid/remove_members` |
+
+---
+
+## Development
 
 ```bash
 bun install
-bun run build    # 编译到 dist/
-bun run dev      # 监听模式
+bun run build    # compile to dist/
+bun run dev      # watch mode
 bun run test
 bun run lint
 ```
 
 ---
 
-## 许可证
+## License
 
 MIT License

@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -14,7 +15,7 @@ export default {
 		DESCRIPTIONS.BASE_APP_TOKEN,
 		DESCRIPTIONS.REQUEST_BODY,
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/docs/bitable-v1/advanced-permission/app-role/create-2">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/docs/bitable-v1/advanced-permission/app-role/create-2')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

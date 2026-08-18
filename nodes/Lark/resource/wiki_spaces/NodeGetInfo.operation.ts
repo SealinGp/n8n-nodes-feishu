@@ -1,45 +1,46 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '获取知识空间节点信息',
+	name: WORDING.GetWikiNodeInfo,
 	value: 'getSpaceNodeInfo',
 	order: 90,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space-node/get_node">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space-node/get_node')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '节点Token',
+			displayName: WORDING.WikiNodeToken,
 			name: 'token',
 			type: 'string',
 			typeOptions: { password: true },
 			required: true,
 			default: '',
-			description: '知识库节点或对应云文档的实际token',
+			description: WORDING.WikiNodeTokenDescription,
 		},
 		{
-			displayName: '文档类型',
+			displayName: WORDING.WikiDocumentType,
 			name: 'obj_type',
 			type: 'options',
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
-				{ name: '知识库节点', value: 'wiki' },
-				{ name: '旧版文档', value: 'doc' },
-				{ name: '新版文档', value: 'docx' },
-				{ name: '表格', value: 'sheet' },
-				{ name: '思维导图', value: 'mindnote' },
-				{ name: '多维表格', value: 'bitable' },
-				{ name: '文件', value: 'file' },
-				{ name: '幻灯片', value: 'slides' },
+				{ name: WORDING.WikiNode, value: 'wiki' },
+				{ name: WORDING.WikiLegacyDocument, value: 'doc' },
+				{ name: WORDING.WikiNewDocument, value: 'docx' },
+				{ name: WORDING.WikiSheet, value: 'sheet' },
+				{ name: WORDING.WikiMindnote, value: 'mindnote' },
+				{ name: WORDING.WikiBitable, value: 'bitable' },
+				{ name: WORDING.WikiFile, value: 'file' },
+				{ name: WORDING.WikiSlides, value: 'slides' },
 			],
 			default: 'wiki',
-			description: '文档类型，不传时默认以wiki类型查询',
+			description: WORDING.WikiDocumentTypeDescription,
 		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {

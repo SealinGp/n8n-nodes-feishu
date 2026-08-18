@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -14,7 +15,7 @@ export default {
 		DESCRIPTIONS.SHEET_ID,
 		DESCRIPTIONS.TITLE,
 		{
-			displayName: 'Lock Sheet(锁定工作表)',
+			displayName: WORDING.UiLockSheet,
 			name: 'lock',
 			description: 'Whether to lock the sheet',
 			type: 'boolean',
@@ -22,7 +23,7 @@ export default {
 			default: false,
 		},
 		{
-			displayName: 'Lock Info(锁定信息)',
+			displayName: WORDING.UiLockInfo,
 			name: 'lockInfo',
 			description: 'Lock info',
 			type: 'string',
@@ -42,7 +43,7 @@ export default {
 			options: [
 				DESCRIPTIONS.SHEET_INDEX,
 				{
-					displayName: 'Frozen Column Count(冻结列数)',
+					displayName: WORDING.UiFrozenColumnCount,
 					name: 'frozenColumnCount',
 					description: 'Column index to freeze up to. 0 means no columns are frozen.',
 					type: 'number',
@@ -53,7 +54,7 @@ export default {
 					},
 				},
 				{
-					displayName: 'Frozen Row Count(冻结行数)',
+					displayName: WORDING.UiFrozenRowCount,
 					name: 'frozenRowCount',
 					description: 'Row index to freeze up to. 0 means no rows are frozen.',
 					type: 'number',
@@ -64,14 +65,14 @@ export default {
 					},
 				},
 				{
-					displayName: 'Hidden Sheet(隐藏工作表)',
+					displayName: WORDING.UiHiddenSheet,
 					name: 'hidden',
 					description: 'Whether to hide the sheet',
 					default: false,
 					type: 'boolean',
 				},
 				{
-					displayName: 'User IDs(工作表权限用户 ID)',
+					displayName: WORDING.UiUserIds944168,
 					name: 'userIds',
 					description: 'User IDs',
 					type: 'json',
@@ -86,7 +87,7 @@ export default {
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/sheets-v3/spreadsheet-sheet/update-sheet-properties">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/sheets-v3/spreadsheet-sheet/update-sheet-properties')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

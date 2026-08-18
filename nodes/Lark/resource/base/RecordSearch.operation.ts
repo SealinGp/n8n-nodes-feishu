@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -18,7 +19,7 @@ export default {
 		DESCRIPTIONS.PAGE_SIZE,
 		DESCRIPTIONS.REQUEST_BODY,
 		{
-			displayName: 'Options(选项)',
+			displayName: WORDING.Options,
 			name: 'options',
 			type: 'collection',
 			placeholder: 'Add Field',
@@ -26,7 +27,7 @@ export default {
 			options: [DESCRIPTIONS.USER_ID_TYPE],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/docs/bitable-v1/app-table-record/search">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/docs/bitable-v1/app-table-record/search')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

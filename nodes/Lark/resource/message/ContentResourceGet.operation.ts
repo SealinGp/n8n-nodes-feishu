@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions, IBinaryData } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { OperationType, OutputType } from '../../../help/type/enums';
@@ -15,7 +16,7 @@ export default {
 		DESCRIPTIONS.RESOURCE_KEY,
 		DESCRIPTIONS.OUTPUT_AS_BINARY,
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/im-v1/message/get-2">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/im-v1/message/get-2')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

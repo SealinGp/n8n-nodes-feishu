@@ -1,58 +1,59 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '更新知识空间设置',
+	name: WORDING.UpdateWikiSpaceSettings,
 	value: 'updateSpaceSettings',
 	order: 98,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space-setting/update">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space-setting/update')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '知识空间ID',
+			displayName: WORDING.WikiSpaceId,
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: '一级页面创建权限',
+			displayName: WORDING.WikiRootPageCreatePermission,
 			name: 'create_setting',
 			type: 'options',
 			options: [
-				{ name: '管理员和成员', value: 'admin_and_member' },
-				{ name: '仅管理员', value: 'admin' },
+				{ name: WORDING.WikiAdminAndMember, value: 'admin_and_member' },
+				{ name: WORDING.WikiAdminOnly, value: 'admin' },
 			],
 			default: 'admin_and_member',
-			description: '谁可以创建空间的一级页面',
+			description: WORDING.WikiRootPagePermissionDescription,
 		},
 		{
-			displayName: '文档操作权限',
+			displayName: WORDING.WikiDocumentOperationPermission,
 			name: 'security_setting',
 			type: 'options',
 			options: [
-				{ name: '允许', value: 'allow' },
-				{ name: '不允许', value: 'not_allow' },
+				{ name: WORDING.WikiAllowed, value: 'allow' },
+				{ name: WORDING.WikiNotAllowed, value: 'not_allow' },
 			],
 			default: 'allow',
-			description: '可阅读用户是否可创建副本/打印/导出/复制',
+			description: WORDING.WikiDocumentOperationDescription,
 		},
 		{
-			displayName: '评论权限',
+			displayName: WORDING.WikiCommentPermission,
 			name: 'comment_setting',
 			type: 'options',
 			options: [
-				{ name: '允许', value: 'allow' },
-				{ name: '不允许', value: 'not_allow' },
+				{ name: WORDING.WikiAllowed, value: 'allow' },
+				{ name: WORDING.WikiNotAllowed, value: 'not_allow' },
 			],
 			default: 'allow',
-			description: '可阅读用户是否可评论',
+			description: WORDING.WikiCommentPermissionDescription,
 		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {

@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -16,7 +17,7 @@ export default {
 		DESCRIPTIONS.START_INDEX,
 		DESCRIPTIONS.END_INDEX,
 		{
-			displayName: 'Destination Index(目标位置)',
+			displayName: WORDING.UiDestinationIndex,
 			name: 'destination_index',
 			type: 'number',
 			default: 0,
@@ -27,7 +28,7 @@ export default {
 			description: 'The target position of the row or column to be moved',
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/sheets-v3/sheet-rowcol/move_dimension">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/sheets-v3/sheet-rowcol/move_dimension')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
