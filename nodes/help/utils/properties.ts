@@ -666,7 +666,7 @@ export const triggerEventProperty = {
 	required: true,
 	options: [
 		{
-			name: 'Add Reaction for Message(新增消息表情回复)',
+			name: WORDING.UiEventAddReaction,
 			value: 'im.message.reaction.created_v1',
 			description: 'This event will be triggered when a reaction is added to a message',
 			displayOptions: {
@@ -676,12 +676,12 @@ export const triggerEventProperty = {
 			},
 		},
 		{
-			name: 'Any Event(所有事件)',
+			name: WORDING.UiEventAny,
 			value: ANY_EVENT,
 			description: 'Triggers on any event',
 		},
 		{
-			name: 'Bot Menu Event(自定义菜单事件)',
+			name: WORDING.UiEventBotMenu,
 			value: 'application.bot.menu_v6',
 			description: 'This event is triggered when the user clicks bot menu',
 			displayOptions: {
@@ -691,24 +691,24 @@ export const triggerEventProperty = {
 			},
 		},
 		{
-			name: 'Base App Field Changed(多维表格字段变更)',
+			name: WORDING.UiEventBaseAppFieldChanged,
 			value: 'drive.file.bitable_field_changed_v1',
 			description: 'This event is triggered when a subscribed Base app field changes',
 		},
 		{
-			name: 'Base App Record Changed(多维表格记录变更)',
+			name: WORDING.UiEventBaseAppRecordChanged,
 			value: 'drive.file.bitable_record_changed_v1',
 			description:
 				'This event is triggered when a subscribed multi-dimensional table record changes',
 		},
 		{
-			name: 'Card Postback Interaction(卡片回传交互)',
+			name: WORDING.UiEventCardPostback,
 			value: 'card.action.trigger',
 			description:
 				'This callback is triggered when the user clicks on the component configured with postback interaction on the card',
 		},
 		{
-			name: 'Delete Reaction for Message(删除消息表情回复)',
+			name: WORDING.UiEventDeleteReaction,
 			value: 'im.message.reaction.deleted_v1',
 			description: 'This event will be triggered when the message reaction is deleted',
 			displayOptions: {
@@ -718,7 +718,7 @@ export const triggerEventProperty = {
 			},
 		},
 		{
-			name: 'Receive Message(接收消息)',
+			name: WORDING.UiEventReceiveMessage,
 			value: TriggerEventType.ReceiveMessage,
 			description: 'This event is triggered when the bot receives a message sent by a user',
 		},

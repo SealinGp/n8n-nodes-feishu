@@ -379,6 +379,14 @@ export interface IWording {
 	UiResponseFormDescription: string;
 	UiResponseFormTitle: string;
 	UiTriggerOn: string;
+	UiEventAddReaction: string;
+	UiEventAny: string;
+	UiEventBotMenu: string;
+	UiEventBaseAppFieldChanged: string;
+	UiEventBaseAppRecordChanged: string;
+	UiEventCardPostback: string;
+	UiEventDeleteReaction: string;
+	UiEventReceiveMessage: string;
 	UiLark: string;
 	UiLarkTrigger: string;
 	UiThisTriggerOnlySupportsFeishuChinaAndDueToLarkApiLimitationsYouCanUseJustOneLarkTriggerForEachLarkBotAtATime: string;
