@@ -92,6 +92,17 @@ jobs:
           npm version patch -m "Bump version to %s [skip ci]"
           echo "new_version=$(node -e "process.stdout.write(require('./package.json').version)")" >> $GITHUB_OUTPUT
 
+      - name: Verify npm auth before publishing
+        run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to npm
+        run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_MODE: "1"
+
       - name: Push changes
         run: |
           VERSION=$(node -e "process.stdout.write(require('./package.json').version)")
@@ -106,8 +117,3 @@ jobs:
           draft: false
           generate_release_notes: true
 
-      - name: Publish to npm
-        run: npm publish --access public --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          RELEASE_MODE: "1"
