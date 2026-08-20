@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
@@ -29,20 +30,20 @@ export default {
 	order: 100,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/approval-v4/instance/create">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/approval-v4/instance/create')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: 'Approval Code(审批定义 Code)',
+			displayName: WORDING.UiApprovalCode,
 			name: 'approval_code',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: 'User ID Type(用户 ID 类型)',
+			displayName: WORDING.UiUserIdType,
 			name: 'user_id_type',
 			type: 'options',
 			options: [
@@ -54,35 +55,35 @@ export default {
 				'This endpoint identifies the applicant/approvers by dedicated body fields (user_id vs open_id), NOT by a query parameter. Union ID is not supported here.',
 		},
 		{
-			displayName: 'Applicant User ID(发起人用户 ID)',
+			displayName: WORDING.UiApplicantUserId,
 			name: 'user_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: 'Title Widget ID(标题控件 ID)',
+			displayName: WORDING.UiTitleWidgetId,
 			name: 'title_widget_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: 'Title(标题)',
+			displayName: WORDING.UiTitle,
 			name: 'title',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: 'Description Widget ID(描述控件 ID)',
+			displayName: WORDING.UiDescriptionWidgetId,
 			name: 'description_widget_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: 'Description(描述)',
+			displayName: WORDING.UiDescription,
 			name: 'description',
 			type: 'string',
 			typeOptions: {
@@ -92,21 +93,21 @@ export default {
 			default: '',
 		},
 		{
-			displayName: 'Approver Node ID(审批节点 ID)',
+			displayName: WORDING.UiApproverNodeId,
 			name: 'approver_node_id',
 			type: 'string',
 			default: '',
 			description: 'Node ID from the approval definition when approvers are chosen at submit time',
 		},
 		{
-			displayName: 'Approver User IDs(审批人用户 ID 列表)',
+			displayName: WORDING.UiApproverUserIds,
 			name: 'approver_user_ids',
 			type: 'string',
 			default: '',
 			description: 'JSON array or comma-separated user IDs. Uses the selected user ID type.',
 		},
 		{
-			displayName: 'Request Body Extra(额外请求体)',
+			displayName: WORDING.UiRequestBodyExtra,
 			name: 'body',
 			type: 'json',
 			default: '{}',

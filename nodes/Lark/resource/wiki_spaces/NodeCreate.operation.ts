@@ -1,69 +1,70 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '创建知识空间节点',
+	name: WORDING.CreateWikiNode,
 	value: 'createSpaceNode',
 	order: 90,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space-node/create">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space-node/create')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '知识空间ID',
+			displayName: WORDING.WikiSpaceId,
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: '文档类型',
+			displayName: WORDING.WikiDocumentType,
 			name: 'obj_type',
 			type: 'options',
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
-				{ name: '文档', value: 'docx' },
-				{ name: '表格', value: 'sheet' },
-				{ name: '思维导图', value: 'mindnote' },
-				{ name: '多维表格', value: 'bitable' },
-				{ name: '文件', value: 'file' },
+				{ name: WORDING.WikiDocument, value: 'docx' },
+				{ name: WORDING.WikiSheet, value: 'sheet' },
+				{ name: WORDING.WikiMindnote, value: 'mindnote' },
+				{ name: WORDING.WikiBitable, value: 'bitable' },
+				{ name: WORDING.WikiFile, value: 'file' },
 			],
 			default: 'docx',
 		},
 		{
-			displayName: '父节点Token',
+			displayName: WORDING.WikiParentNodeToken,
 			name: 'parent_node_token',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
-			description: '父节点token，一级节点为空',
+			description: WORDING.WikiParentNodeTokenDescription,
 		},
 		{
-			displayName: '节点类型',
+			displayName: WORDING.WikiNodeType,
 			name: 'node_type',
 			type: 'options',
 			required: true,
 			options: [
-				{ name: '实体', value: 'origin' },
-				{ name: '快捷方式', value: 'shortcut' },
+				{ name: WORDING.WikiOriginNode, value: 'origin' },
+				{ name: WORDING.WikiShortcut, value: 'shortcut' },
 			],
 			default: 'origin',
 		},
 		{
-			displayName: '原始节点Token',
+			displayName: WORDING.WikiOriginNodeToken,
 			name: 'origin_node_token',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
-			description: '快捷方式对应的实体node_token',
+			description: WORDING.WikiShortcutOriginTokenDescription,
 		},
 		{
-			displayName: '文档标题',
+			displayName: WORDING.WikiDocumentTitle,
 			name: 'title',
 			type: 'string',
 			default: '',

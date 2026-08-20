@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -28,7 +29,7 @@ export default {
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/docs/bitable-v1/app-table-record/batch_get">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/docs/bitable-v1/app-table-record/batch_get')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

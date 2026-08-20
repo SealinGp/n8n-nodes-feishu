@@ -1,21 +1,22 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 import RequestUtils from '../../../help/utils/RequestUtils';
 
 export default {
-	name: 'Get Task List | 列取任务列表',
+	name: WORDING.GetTaskList,
 	value: 'getList',
 	order: 95,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/task-v2/task/list">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/task-v2/task/list')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: 'User ID Type(用户 ID 类型)',
+			displayName: WORDING.LabelUserIDType,
 			name: 'user_id_type',
 			type: 'options',
 			options: [
@@ -26,7 +27,7 @@ export default {
 			default: 'open_id',
 		},
 		{
-			displayName: 'Return All(返回全部)',
+			displayName: WORDING.LabelReturnAll,
 			name: 'return_all',
 			type: 'boolean',
 			default: true,
@@ -34,7 +35,7 @@ export default {
 				'Whether to auto-paginate and return all tasks. When disabled, only one page is returned.',
 		},
 		{
-			displayName: 'Page Size(分页大小)',
+			displayName: WORDING.LabelPageSize,
 			name: 'page_size',
 			type: 'number',
 			typeOptions: {
@@ -46,7 +47,7 @@ export default {
 			description: 'Number of tasks per page (max 100)',
 		},
 		{
-			displayName: 'Page Token(分页标记)',
+			displayName: WORDING.LabelPageToken,
 			name: 'page_token',
 			type: 'string',
 			typeOptions: { password: true },
@@ -59,14 +60,14 @@ export default {
 			},
 		},
 		{
-			displayName: 'Options(可选参数)',
+			displayName: WORDING.LabelOptions,
 			name: 'options',
 			type: 'collection',
 			placeholder: 'Add Field',
 			default: {},
 			options: [
 				{
-					displayName: 'Completed(是否完成)',
+					displayName: WORDING.LabelCompleted,
 					name: 'completed',
 					type: 'options',
 					options: [
@@ -78,7 +79,7 @@ export default {
 					description: 'Filter by completion status',
 				},
 				{
-					displayName: 'Type(任务类型)',
+					displayName: WORDING.LabelType,
 					name: 'type',
 					type: 'options',
 					options: [
@@ -88,7 +89,7 @@ export default {
 					default: 'my_tasks',
 				},
 				{
-					displayName: 'Start Create Time(任务创建起始时间)',
+					displayName: WORDING.LabelStartCreateTime,
 					name: 'start_create_time',
 					type: 'string',
 					default: '',
@@ -96,7 +97,7 @@ export default {
 						'Filter tasks created after this timestamp (millisecond, e.g. 1675844827000)',
 				},
 				{
-					displayName: 'End Create Time(任务创建结束时间)',
+					displayName: WORDING.LabelEndCreateTime,
 					name: 'end_create_time',
 					type: 'string',
 					default: '',

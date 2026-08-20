@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
@@ -23,18 +24,18 @@ export default {
 				DESCRIPTIONS.COUNT,
 				{
 					...DESCRIPTIONS.ARRAY_JSON,
-					displayName: 'Owner IDs(所有者 ID)',
+					displayName: WORDING.UiOwnerIds,
 					name: 'owner_ids',
 				},
 				{
 					...DESCRIPTIONS.ARRAY_JSON,
-					displayName: 'Chat Group IDs(群组 ID)',
+					displayName: WORDING.UiChatGroupIds,
 					name: 'chat_ids',
 				},
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/drive-v1/search/document-search">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/drive-v1/search/document-search')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

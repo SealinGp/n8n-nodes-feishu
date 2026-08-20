@@ -8,44 +8,46 @@ import {
 } from 'n8n-workflow';
 import { IAuthenticateGeneric } from 'n8n-workflow';
 import { BaseUrl, Credentials } from '../nodes/help/type/enums';
+import { WORDING } from '../nodes/help/wording';
+import { getDocumentationUrl } from '../nodes/help/utils/urls';
 
 export class LarkTokenApi implements ICredentialType {
 	name = Credentials.TenantToken;
-	displayName = 'Lark Tenant Token API';
+	displayName = WORDING.LarkTenantTokenApi;
 	icon: Icon = 'file:lark_icon.svg';
-	documentationUrl = 'https://open.feishu.cn/document/faq/trouble-shooting/how-to-obtain-app-id';
+	documentationUrl = getDocumentationUrl('/document/faq/trouble-shooting/how-to-obtain-app-id');
 	properties: INodeProperties[] = [
 		{
-			displayName: 'Base URL',
+			displayName: WORDING.BaseUrl,
 			name: 'url',
 			type: 'options',
 			options: [
 				{
 					name: `${BaseUrl.China}`,
 					value: `${BaseUrl.China}`,
-					description: 'Feishu Open Platform base URL(China)',
+					description: WORDING.ChinaBaseUrlDescription,
 				},
 				{
 					name: `${BaseUrl.Global}`,
 					value: `${BaseUrl.Global}`,
-					description: 'Larksuite Open Platform base URL(Global)',
+					description: WORDING.GlobalBaseUrlDescription,
 				},
 				{
-					name: 'Custom',
+					name: WORDING.CustomUrl,
 					value: 'custom',
-					description: 'Custom URL',
+					description: WORDING.CustomUrlDescription,
 				},
 			],
 			default: [],
 			required: true,
 		},
 		{
-			displayName: 'Custom URL',
+			displayName: WORDING.CustomUrl,
 			name: 'customUrl',
 			type: 'string',
 			default: '',
 			placeholder: 'https://custom.domain',
-			hint: 'Always start with "https://" or "http://"',
+			hint: WORDING.CustomUrlHint,
 			displayOptions: {
 				show: {
 					url: ['custom'],
@@ -53,22 +55,22 @@ export class LarkTokenApi implements ICredentialType {
 			},
 		},
 		{
-			displayName: 'URL',
+			displayName: WORDING.Url,
 			name: 'baseUrl',
 			type: 'hidden',
 			default: '={{$self["url"] === "custom" ? $self["customUrl"] : $self["url"]}}',
 		},
 		{
-			displayName: 'App ID',
-			description: 'The unique identifier for an application on the Lark Open Platform',
+			displayName: WORDING.AppId,
+			description: WORDING.AppIdDescription,
 			name: 'appid',
 			type: 'string',
 			default: '',
 		},
 		{
-			displayName: 'App Secret',
+			displayName: WORDING.AppSecret,
 			name: 'appsecret',
-			description: 'The secret key for the application.',
+			description: WORDING.AppSecretDescription,
 			type: 'string',
 			typeOptions: {
 				password: true,
@@ -76,7 +78,7 @@ export class LarkTokenApi implements ICredentialType {
 			default: '',
 		},
 		{
-			displayName: 'AccessToken',
+			displayName: WORDING.AccessToken,
 			name: 'accessToken',
 			type: 'hidden',
 			default: '',

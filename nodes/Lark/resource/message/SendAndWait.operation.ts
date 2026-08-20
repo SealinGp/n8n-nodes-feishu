@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import {
 	IDataObject,
 	IExecuteFunctions,
@@ -19,7 +20,7 @@ export default {
 	order: 1,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/im-v1/message/create">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/im-v1/message/create')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
@@ -27,7 +28,7 @@ export default {
 		DESCRIPTIONS.RECEIVE_ID_TYPE,
 		{
 			...DESCRIPTIONS.MEMBER_ID,
-			displayName: 'Receive ID(接收 ID)',
+			displayName: WORDING.UiReceiveId,
 			name: 'receive_id',
 		},
 		...sendAndWaitProperties,

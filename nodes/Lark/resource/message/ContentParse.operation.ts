@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import {
 	IDataObject,
 	IExecuteFunctions,
@@ -62,7 +63,7 @@ export default {
 	order: 100,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/im-v1/message/events/receive">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/im-v1/message/events/receive')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

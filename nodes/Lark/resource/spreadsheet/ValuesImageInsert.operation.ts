@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -14,7 +15,7 @@ export default {
 		DESCRIPTIONS.SHEET_ID,
 		DESCRIPTIONS.CELL_RANGE,
 		{
-			displayName: 'Image Name(图片名称)',
+			displayName: WORDING.UiImageName,
 			name: 'name',
 			type: 'string',
 			required: true,
@@ -24,7 +25,7 @@ export default {
 				'Supported suffixes are: "PNG", "JPEG", "JPG", "GIF", "BMP", "JFIF", "EXIF", "TIFF", "BPG", "HEIC". Case insensitive.',
 		},
 		{
-			displayName: 'Image Binary Field(图片二进制字段)',
+			displayName: WORDING.UiImageBinaryField,
 			name: 'image_binary_field',
 			type: 'string',
 			required: true,
@@ -32,7 +33,7 @@ export default {
 			description: 'The binary field of the image to be written',
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/sheets-v3/data-operation/write-images">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/sheets-v3/data-operation/write-images')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

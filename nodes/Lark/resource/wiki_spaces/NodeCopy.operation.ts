@@ -1,28 +1,29 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '创建知识空间节点副本',
+	name: WORDING.CopyWikiNode,
 	value: 'copySpaceNode',
 	order: 90,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space-node/copy">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space-node/copy')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '知识空间ID',
+			displayName: WORDING.WikiSpaceId,
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: '节点Token',
+			displayName: WORDING.WikiNodeToken,
 			name: 'node_token',
 			type: 'string',
 			typeOptions: { password: true },
@@ -30,26 +31,26 @@ export default {
 			default: '',
 		},
 		{
-			displayName: '目标父节点Token',
+			displayName: WORDING.WikiTargetParentToken,
 			name: 'target_parent_token',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
-			description: '目标父节点Token，与目标知识空间ID不可同时为空',
+			description: WORDING.WikiCopyTargetParentDescription,
 		},
 		{
-			displayName: '目标知识空间ID',
+			displayName: WORDING.WikiTargetSpaceId,
 			name: 'target_space_id',
 			type: 'string',
 			default: '',
-			description: '目标知识空间ID，与目标父节点Token不可同时为空',
+			description: WORDING.WikiCopyTargetSpaceDescription,
 		},
 		{
-			displayName: '新标题',
+			displayName: WORDING.WikiNewTitle,
 			name: 'title',
 			type: 'string',
 			default: '',
-			description: '复制后的新标题。如果填空，则新标题为空。如果不填，则使用原节点标题',
+			description: WORDING.WikiCopyTitleDescription,
 		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {

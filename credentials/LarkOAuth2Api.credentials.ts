@@ -1,51 +1,54 @@
 import { Icon, ICredentialType, INodeProperties } from 'n8n-workflow';
 import { BaseUrl, Credentials } from '../nodes/help/type/enums';
+import { WORDING } from '../nodes/help/wording';
+import { getDocumentationUrl } from '../nodes/help/utils/urls';
 
 export class LarkOAuth2Api implements ICredentialType {
 	name = Credentials.UserToken;
-	displayName = 'Lark OAuth2 API';
+	displayName = WORDING.LarkOAuth2Api;
 	extends = ['oAuth2Api'];
 	icon: Icon = 'file:lark_icon.svg';
-	documentationUrl =
-		'https://open.feishu.cn/document/authentication-management/access-token/obtain-oauth-code';
+	documentationUrl = getDocumentationUrl(
+		'/document/authentication-management/access-token/obtain-oauth-code',
+	);
 	properties: INodeProperties[] = [
 		{
-			displayName: 'Grant Type',
+			displayName: WORDING.GrantType,
 			name: 'grantType',
 			type: 'hidden',
 			default: 'pkce',
 		},
 		{
-			displayName: 'Base URL',
+			displayName: WORDING.BaseUrl,
 			name: 'url',
 			type: 'options',
 			options: [
 				{
 					name: `${BaseUrl.China}`,
 					value: `${BaseUrl.China}`,
-					description: 'Feishu Open Platform base URL(China)',
+					description: WORDING.ChinaBaseUrlDescription,
 				},
 				{
 					name: `${BaseUrl.Global}`,
 					value: `${BaseUrl.Global}`,
-					description: 'Larksuite Open Platform base URL(Global)',
+					description: WORDING.GlobalBaseUrlDescription,
 				},
 				{
-					name: 'Custom',
+					name: WORDING.CustomUrl,
 					value: 'custom',
-					description: 'Custom URL',
+					description: WORDING.CustomUrlDescription,
 				},
 			],
 			default: [],
 			required: true,
 		},
 		{
-			displayName: 'Custom URL',
+			displayName: WORDING.CustomUrl,
 			name: 'customUrl',
 			type: 'string',
 			default: '',
 			placeholder: 'https://custom.domain',
-			hint: 'Always start with "https://" or "http://"',
+			hint: WORDING.CustomUrlHint,
 			displayOptions: {
 				show: {
 					url: ['custom'],
@@ -53,7 +56,7 @@ export class LarkOAuth2Api implements ICredentialType {
 			},
 		},
 		{
-			displayName: 'Custom Access Token URL',
+			displayName: WORDING.CustomAccessTokenUrl,
 			name: 'customAccessTokenUrl',
 			type: 'string',
 			default: '',
@@ -65,7 +68,7 @@ export class LarkOAuth2Api implements ICredentialType {
 			},
 		},
 		{
-			displayName: 'Custom Authorization URL',
+			displayName: WORDING.CustomAuthorizationUrl,
 			name: 'customAuthorizationUrl',
 			type: 'string',
 			default: '',
@@ -77,27 +80,27 @@ export class LarkOAuth2Api implements ICredentialType {
 			},
 		},
 		{
-			displayName: 'URL',
+			displayName: WORDING.Url,
 			name: 'baseUrl',
 			type: 'hidden',
 			default: '={{$self["url"] === "custom" ? $self["customUrl"] : $self["url"]}}',
 		},
 		{
-			displayName: `Up to 50 scope permissions can be requested from the user at once. Recommend to include offline_access.<a target="_blank" href="https://open.feishu.cn/document/authentication-management/access-token/obtain-oauth-code?#bc6d1214">More Details</a>`,
+			displayName: `${WORDING.OAuthScopeSuggestion}<a target="_blank" href="https://open.feishu.cn/document/authentication-management/access-token/obtain-oauth-code?#bc6d1214">${WORDING.MoreDetails}</a>`,
 			name: 'suggestion',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: 'Scope',
+			displayName: WORDING.Scope,
 			name: 'authScope',
 			type: 'string',
-			hint: 'Format: offline_access,contact:contact,bitable:app. <a target="_blank" href="https://open.feishu.cn/document/authentication-management/access-token/obtain-oauth-code#bc6d1214">More Details</a>',
+			hint: `${WORDING.OAuthScopeHint} <a target="_blank" href="https://open.feishu.cn/document/authentication-management/access-token/obtain-oauth-code#bc6d1214">${WORDING.MoreDetails}</a>`,
 			default: 'offline_access',
 			required: true,
 		},
 		{
-			displayName: 'Authorization URL',
+			displayName: WORDING.AuthorizationUrl,
 			name: 'authUrl',
 			type: 'hidden',
 			default:
@@ -105,7 +108,7 @@ export class LarkOAuth2Api implements ICredentialType {
 			required: true,
 		},
 		{
-			displayName: 'Access Token URL',
+			displayName: WORDING.AccessTokenUrl,
 			name: 'accessTokenUrl',
 			type: 'hidden',
 			default:
@@ -113,19 +116,19 @@ export class LarkOAuth2Api implements ICredentialType {
 			required: true,
 		},
 		{
-			displayName: 'Scope',
+			displayName: WORDING.Scope,
 			name: 'scope',
 			type: 'hidden',
 			default: '={{$self["authScope"].replace(/,/g, " ").trim()}}',
 		},
 		{
-			displayName: 'Auth URI Query Parameters',
+			displayName: WORDING.AuthUriQueryParameters,
 			name: 'authQueryParameters',
 			type: 'hidden',
 			default: '',
 		},
 		{
-			displayName: 'Authentication',
+			displayName: WORDING.Authentication,
 			name: 'authentication',
 			type: 'hidden',
 			default: 'header',

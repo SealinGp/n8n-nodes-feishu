@@ -1,28 +1,29 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '移动知识空间节点',
+	name: WORDING.MoveWikiNode,
 	value: 'moveSpaceNode',
 	order: 90,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space-node/move">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space-node/move')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '源知识空间ID',
+			displayName: WORDING.WikiSourceSpaceId,
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: '需要迁移的节点Token',
+			displayName: WORDING.WikiNodeToMove,
 			name: 'node_token',
 			type: 'string',
 			typeOptions: { password: true },
@@ -30,19 +31,19 @@ export default {
 			default: '',
 		},
 		{
-			displayName: '目标父节点Token',
+			displayName: WORDING.WikiTargetParentToken,
 			name: 'target_parent_token',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
-			description: '移动到的父节点token',
+			description: WORDING.WikiMoveParentDescription,
 		},
 		{
-			displayName: '目标知识空间ID',
+			displayName: WORDING.WikiTargetSpaceId,
 			name: 'target_space_id',
 			type: 'string',
 			default: '',
-			description: '移动到的知识空间ID',
+			description: WORDING.WikiMoveSpaceDescription,
 		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {

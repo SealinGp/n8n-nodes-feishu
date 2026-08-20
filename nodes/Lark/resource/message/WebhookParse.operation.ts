@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import {
 	IDataObject,
 	IExecuteFunctions,
@@ -39,24 +40,24 @@ export default {
 	order: 10,
 	options: [
 		{
-			displayName: 'Encrypt Key',
+			displayName: WORDING.UiEncryptKey,
 			name: 'encryptKey',
 			type: 'string',
 			required: true,
 			description:
-				'Used to encrypt the transmission. <a target="_blank" href="https://open.feishu.cn/document/event-subscription-guide/event-subscriptions/event-subscription-configure-/choose-a-subscription-mode/send-notifications-to-developers-server#e0dff53d">Check Doc</a>.',
+				`Used to encrypt the transmission. <a target="_blank" href="${getDocumentationUrl('/document/event-subscription-guide/event-subscriptions/event-subscription-configure-/choose-a-subscription-mode/send-notifications-to-developers-server#e0dff53d')}">Check Doc</a>.`,
 			typeOptions: {
 				password: true,
 			},
 			default: '',
 		},
 		{
-			displayName: 'Verification Token',
+			displayName: WORDING.UiVerificationToken,
 			name: 'verificationToken',
 			type: 'string',
 			required: true,
 			description:
-				'Used for the application verification identifier. <a target="_blank" href="https://open.feishu.cn/document/event-subscription-guide/event-subscriptions/event-subscription-configure-/choose-a-subscription-mode/send-notifications-to-developers-server#c589dfb1">Check Doc</a>.',
+				`Used for the application verification identifier. <a target="_blank" href="${getDocumentationUrl('/document/event-subscription-guide/event-subscriptions/event-subscription-configure-/choose-a-subscription-mode/send-notifications-to-developers-server#c589dfb1')}">Check Doc</a>.`,
 			typeOptions: {
 				password: true,
 			},
@@ -64,7 +65,7 @@ export default {
 		},
 		triggerEventProperty,
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/event-subscription-guide/event-subscriptions/event-subscription-configure-/choose-a-subscription-mode/send-notifications-to-developers-server">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/event-subscription-guide/event-subscriptions/event-subscription-configure-/choose-a-subscription-mode/send-notifications-to-developers-server')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

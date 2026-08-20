@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import FormData from 'form-data';
 import RequestUtils from '../../../help/utils/RequestUtils';
@@ -23,7 +24,7 @@ export default {
 			options: [DESCRIPTIONS.FILE_NAME],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/im-v1/file/create">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/im-v1/file/create')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

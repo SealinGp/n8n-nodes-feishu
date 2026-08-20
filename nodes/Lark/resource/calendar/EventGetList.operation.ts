@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 /* eslint-disable n8n-nodes-base/node-param-type-options-password-missing */
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { DateTime } from 'luxon';
@@ -44,7 +45,7 @@ export default {
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/calendar-v4/calendar-event/list">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/calendar-v4/calendar-event/list')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -14,7 +15,7 @@ export default {
 		DESCRIPTIONS.SHEET_ID,
 		DESCRIPTIONS.CELL_RANGE,
 		{
-			displayName: 'Merge Type(合并类型)',
+			displayName: WORDING.UiMergeType,
 			name: 'mergeType',
 			type: 'options',
 			options: [
@@ -26,7 +27,7 @@ export default {
 			default: 'MERGE_ALL',
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/sheets-v3/data-operation/merge-cells">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/sheets-v3/data-operation/merge-cells')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

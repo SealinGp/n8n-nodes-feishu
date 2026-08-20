@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -30,7 +31,7 @@ export default {
 			},
 		},
 		{
-			displayName: 'Visible(是否显示)',
+			displayName: WORDING.UiVisible,
 			name: 'visible',
 			type: 'boolean',
 			default: true,
@@ -44,7 +45,7 @@ export default {
 			default: {},
 			options: [
 				{
-					displayName: 'Fixed Size(行高或列宽)',
+					displayName: WORDING.UiFixedSize,
 					name: 'fixedSize',
 					type: 'number',
 					default: 10,
@@ -58,7 +59,7 @@ export default {
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/sheets-v3/sheet-rowcol/update-rows-or-columns">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/sheets-v3/sheet-rowcol/update-rows-or-columns')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

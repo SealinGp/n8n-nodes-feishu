@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import FormData from 'form-data';
 import RequestUtils from '../../../help/utils/RequestUtils';
@@ -17,7 +18,7 @@ export default {
 		},
 		DESCRIPTIONS.FILE_BINARY_FIELD,
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/drive-v1/upload/multipart-upload-file-/introduction">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/drive-v1/upload/multipart-upload-file-/introduction')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

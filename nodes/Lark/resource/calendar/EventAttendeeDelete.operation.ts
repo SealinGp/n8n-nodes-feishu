@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions, jsonParse } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import RequestUtils from '../../../help/utils/RequestUtils';
@@ -30,7 +31,7 @@ export default {
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/calendar-v4/calendar-event-attendee/batch_delete">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/calendar-v4/calendar-event-attendee/batch_delete')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

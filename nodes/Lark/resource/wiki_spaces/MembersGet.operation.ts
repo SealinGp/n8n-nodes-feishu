@@ -1,40 +1,41 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
 
 export default {
-	name: '获取知识空间成员列表',
+	name: WORDING.GetWikiSpaceMembers,
 	value: 'getSpaceMembers',
 	order: 95,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/wiki-v2/space-member/list">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/wiki-v2/space-member/list')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: '知识空间ID',
+			displayName: WORDING.WikiSpaceId,
 			name: 'space_id',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: '每页大小',
+			displayName: WORDING.WikiPageSize,
 			name: 'page_size',
 			type: 'number',
 			default: 20,
-			description: '分页大小',
+			description: WORDING.WikiPageSizeDescription,
 		},
 		{
-			displayName: '分页标记',
+			displayName: WORDING.WikiPageToken,
 			name: 'page_token',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
-			description: '分页标记，第一次请求不填',
+			description: WORDING.WikiPageTokenDescriptionShort,
 		},
 	],
 	async call(this: IExecuteFunctions, index: number): Promise<IDataObject> {

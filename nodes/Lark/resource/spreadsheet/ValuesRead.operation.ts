@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -21,7 +22,7 @@ export default {
 			default: {},
 			options: [
 				{
-					displayName: 'Value Render Option(值渲染选项)',
+					displayName: WORDING.UiValueRenderOption,
 					name: 'valueRenderOption',
 					type: 'options',
 					options: [
@@ -33,7 +34,7 @@ export default {
 					default: 'ToString',
 				},
 				{
-					displayName: 'Date Time Render Option(日期时间渲染选项)',
+					displayName: WORDING.UiDateTimeRenderOption,
 					name: 'dateTimeRenderOption',
 					type: 'options',
 					options: [{ name: 'FormattedString', value: 'FormattedString' }],
@@ -44,7 +45,7 @@ export default {
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/sheets-v3/data-operation/reading-a-single-range">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/sheets-v3/data-operation/reading-a-single-range')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

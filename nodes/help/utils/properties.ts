@@ -1,3 +1,4 @@
+import { WORDING } from '../wording';
 import { INodeProperties, updateDisplayOptions } from 'n8n-workflow';
 import { DESCRIPTIONS } from '../description';
 import { TriggerEventType } from '../type/enums';
@@ -81,7 +82,7 @@ const cssVariables = `
 `;
 
 const formFields: INodeProperties = {
-	displayName: 'Form Elements',
+	displayName: WORDING.UiFormElements,
 	name: 'formFields',
 	placeholder: 'Add Form Element',
 	type: 'fixedCollection',
@@ -92,11 +93,11 @@ const formFields: INodeProperties = {
 	},
 	options: [
 		{
-			displayName: 'Values',
+			displayName: WORDING.UiValues,
 			name: 'values',
 			values: [
 				{
-					displayName: 'Accepted File Types',
+					displayName: WORDING.UiAcceptedFileTypes,
 					name: 'acceptFileTypes',
 					type: 'string',
 					default: '',
@@ -110,7 +111,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Element Name',
+					displayName: WORDING.UiElementName,
 					name: 'elementName',
 					type: 'string',
 					default: '',
@@ -123,7 +124,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Element Type',
+					displayName: WORDING.UiElementType,
 					name: 'fieldType',
 					type: 'options',
 					default: 'text',
@@ -173,7 +174,7 @@ const formFields: INodeProperties = {
 					required: true,
 				},
 				{
-					displayName: 'Field Label',
+					displayName: WORDING.UiFieldLabel,
 					name: 'fieldLabel',
 					type: 'string',
 					default: '',
@@ -187,7 +188,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Field Name',
+					displayName: WORDING.UiFieldName,
 					name: 'fieldName',
 					description:
 						'The name of the field, used in input attributes and referenced by the workflow',
@@ -200,7 +201,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Field Options',
+					displayName: WORDING.UiFieldOptions,
 					name: 'fieldOptions',
 					placeholder: 'Add Field Option',
 					description: 'List of options that can be selected from the dropdown',
@@ -218,11 +219,11 @@ const formFields: INodeProperties = {
 					},
 					options: [
 						{
-							displayName: 'Values',
+							displayName: WORDING.UiValues,
 							name: 'values',
 							values: [
 								{
-									displayName: 'Option',
+									displayName: WORDING.UiOption,
 									name: 'option',
 									type: 'string',
 									default: '',
@@ -232,7 +233,7 @@ const formFields: INodeProperties = {
 					],
 				},
 				{
-					displayName: 'Field Value',
+					displayName: WORDING.UiFieldValue,
 					name: 'fieldValue',
 					description:
 						'Input value can be set here or will be passed as a query parameter via Field Name if no value is set',
@@ -245,7 +246,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'HTML',
+					displayName: WORDING.UiHtml,
 					name: 'html',
 					typeOptions: {
 						editor: 'htmlEditor',
@@ -262,7 +263,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Multiple Choice',
+					displayName: WORDING.UiMultipleChoice,
 					name: 'multiselect',
 					type: 'boolean',
 					default: false,
@@ -275,7 +276,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Multiple Files',
+					displayName: WORDING.UiMultipleFiles,
 					name: 'multipleFiles',
 					type: 'boolean',
 					default: true,
@@ -288,7 +289,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Placeholder',
+					displayName: WORDING.UiPlaceholder,
 					name: 'placeholder',
 					description: 'Sample text to display inside the field',
 					type: 'string',
@@ -300,7 +301,7 @@ const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Required Field',
+					displayName: WORDING.UiRequiredField,
 					name: 'requiredField',
 					type: 'boolean',
 					default: false,
@@ -330,7 +331,7 @@ const formFields: INodeProperties = {
 
 const formFieldsProperties: INodeProperties[] = [
 	{
-		displayName: 'Define Form',
+		displayName: WORDING.UiDefineForm,
 		name: 'defineForm',
 		type: 'options',
 		noDataExpression: true,
@@ -347,7 +348,7 @@ const formFieldsProperties: INodeProperties[] = [
 		default: 'fields',
 	},
 	{
-		displayName: 'Form Fields',
+		displayName: WORDING.UiFormFields,
 		name: 'jsonOutput',
 		type: 'json',
 		typeOptions: {
@@ -369,7 +370,7 @@ const formFieldsProperties: INodeProperties[] = [
 
 const limitWaitTimeProperties: INodeProperties[] = [
 	{
-		displayName: 'Limit Type',
+		displayName: WORDING.UiLimitType,
 		name: 'limitType',
 		type: 'options',
 		default: 'afterTimeInterval',
@@ -389,7 +390,7 @@ const limitWaitTimeProperties: INodeProperties[] = [
 		],
 	},
 	{
-		displayName: 'Amount',
+		displayName: WORDING.UiAmount,
 		name: 'resumeAmount',
 		type: 'number',
 		displayOptions: {
@@ -405,7 +406,7 @@ const limitWaitTimeProperties: INodeProperties[] = [
 		description: 'The time to wait',
 	},
 	{
-		displayName: 'Unit',
+		displayName: WORDING.UiUnit,
 		name: 'resumeUnit',
 		type: 'options',
 		displayOptions: {
@@ -431,7 +432,7 @@ const limitWaitTimeProperties: INodeProperties[] = [
 		description: 'Unit of the interval value',
 	},
 	{
-		displayName: 'Max Date and Time',
+		displayName: WORDING.UiMaxDateAndTime,
 		name: 'maxDateAndTime',
 		type: 'dateTime',
 		displayOptions: {
@@ -445,7 +446,7 @@ const limitWaitTimeProperties: INodeProperties[] = [
 ];
 
 const limitWaitTimeOption: INodeProperties = {
-	displayName: 'Limit Wait Time',
+	displayName: WORDING.UiLimitWaitTime,
 	name: 'limitWaitTime',
 	type: 'fixedCollection',
 	description:
@@ -453,7 +454,7 @@ const limitWaitTimeOption: INodeProperties = {
 	default: { values: { limitType: 'afterTimeInterval', resumeAmount: 45, resumeUnit: 'minutes' } },
 	options: [
 		{
-			displayName: 'Values',
+			displayName: WORDING.UiValues,
 			name: 'values',
 			values: limitWaitTimeProperties,
 		},
@@ -462,7 +463,7 @@ const limitWaitTimeOption: INodeProperties = {
 
 const approvalOptionsValues = [
 	{
-		displayName: 'Type of Approval',
+		displayName: WORDING.UiTypeOfApproval,
 		name: 'approvalType',
 		type: 'options',
 		placeholder: 'Add option',
@@ -479,7 +480,7 @@ const approvalOptionsValues = [
 		],
 	},
 	{
-		displayName: 'Approve Button Label',
+		displayName: WORDING.UiApproveButtonLabel,
 		name: 'approveLabel',
 		type: 'string',
 		default: 'Approve',
@@ -490,7 +491,7 @@ const approvalOptionsValues = [
 		},
 	},
 	{
-		displayName: 'Disapprove Button Label',
+		displayName: WORDING.UiDisapproveButtonLabel,
 		name: 'disapproveLabel',
 		type: 'string',
 		default: 'Decline',
@@ -504,7 +505,7 @@ const approvalOptionsValues = [
 
 export const sendAndWaitProperties: INodeProperties[] = [
 	{
-		displayName: 'Subject',
+		displayName: WORDING.UiSubject,
 		name: 'subject',
 		type: 'string',
 		default: '',
@@ -512,7 +513,7 @@ export const sendAndWaitProperties: INodeProperties[] = [
 		placeholder: 'e.g. Approval required',
 	},
 	{
-		displayName: 'Message',
+		displayName: WORDING.UiMessage,
 		name: 'message',
 		type: 'string',
 		default: '',
@@ -521,7 +522,7 @@ export const sendAndWaitProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Response Type',
+		displayName: WORDING.UiResponseType,
 		name: 'responseType',
 		type: 'options',
 		default: 'approval',
@@ -544,14 +545,14 @@ export const sendAndWaitProperties: INodeProperties[] = [
 		],
 	},
 	{
-		displayName: 'Disable Button After Submission',
+		displayName: WORDING.UiDisableButtonAfterSubmission,
 		name: 'disableButton',
 		type: 'boolean',
 		default: false,
 		description: 'Whether to disable the buttons after submission to prevent multiple submissions',
 	},
 	{
-		displayName: 'Disable Tips',
+		displayName: WORDING.UiDisableTips,
 		name: 'disableTips',
 		type: 'string',
 		default: '',
@@ -572,14 +573,14 @@ export const sendAndWaitProperties: INodeProperties[] = [
 	),
 
 	{
-		displayName: 'Approval Options',
+		displayName: WORDING.UiApprovalOptions,
 		name: 'approvalOptions',
 		type: 'fixedCollection',
 		placeholder: 'Add option',
 		default: {},
 		options: [
 			{
-				displayName: 'Values',
+				displayName: WORDING.UiValues,
 				name: 'values',
 				values: approvalOptionsValues,
 			},
@@ -591,7 +592,7 @@ export const sendAndWaitProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Options',
+		displayName: WORDING.UiOptions,
 		name: 'options',
 		type: 'collection',
 		placeholder: 'Add option',
@@ -604,26 +605,26 @@ export const sendAndWaitProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Options',
+		displayName: WORDING.UiOptions,
 		name: 'options',
 		type: 'collection',
 		placeholder: 'Add option',
 		default: {},
 		options: [
 			{
-				displayName: 'Message Button Label',
+				displayName: WORDING.UiMessageButtonLabel,
 				name: 'messageButtonLabel',
 				type: 'string',
 				default: 'Respond',
 			},
 			{
-				displayName: 'Response Form Button Label',
+				displayName: WORDING.UiResponseFormButtonLabel,
 				name: 'responseFormButtonLabel',
 				type: 'string',
 				default: 'Submit',
 			},
 			{
-				displayName: 'Response Form Custom Styling',
+				displayName: WORDING.UiResponseFormCustomStyling,
 				name: 'responseFormCustomCss',
 				type: 'string',
 				typeOptions: {
@@ -634,14 +635,14 @@ export const sendAndWaitProperties: INodeProperties[] = [
 				description: 'Override default styling of the response form with CSS',
 			},
 			{
-				displayName: 'Response Form Description',
+				displayName: WORDING.UiResponseFormDescription,
 				name: 'responseFormDescription',
 				description: 'Description of the form that the user can access to provide their response',
 				type: 'string',
 				default: '',
 			},
 			{
-				displayName: 'Response Form Title',
+				displayName: WORDING.UiResponseFormTitle,
 				name: 'responseFormTitle',
 				description: 'Title of the form that the user can access to provide their response',
 				type: 'string',
@@ -659,13 +660,13 @@ export const sendAndWaitProperties: INodeProperties[] = [
 ];
 
 export const triggerEventProperty = {
-	displayName: 'Trigger On',
+	displayName: WORDING.UiTriggerOn,
 	name: 'events',
 	type: 'multiOptions',
 	required: true,
 	options: [
 		{
-			name: 'Add Reaction for Message(新增消息表情回复)',
+			name: WORDING.UiEventAddReaction,
 			value: 'im.message.reaction.created_v1',
 			description: 'This event will be triggered when a reaction is added to a message',
 			displayOptions: {
@@ -675,12 +676,12 @@ export const triggerEventProperty = {
 			},
 		},
 		{
-			name: 'Any Event(所有事件)',
+			name: WORDING.UiEventAny,
 			value: ANY_EVENT,
 			description: 'Triggers on any event',
 		},
 		{
-			name: 'Bot Menu Event(自定义菜单事件)',
+			name: WORDING.UiEventBotMenu,
 			value: 'application.bot.menu_v6',
 			description: 'This event is triggered when the user clicks bot menu',
 			displayOptions: {
@@ -690,24 +691,24 @@ export const triggerEventProperty = {
 			},
 		},
 		{
-			name: 'Base App Field Changed(多维表格字段变更)',
+			name: WORDING.UiEventBaseAppFieldChanged,
 			value: 'drive.file.bitable_field_changed_v1',
 			description: 'This event is triggered when a subscribed Base app field changes',
 		},
 		{
-			name: 'Base App Record Changed(多维表格记录变更)',
+			name: WORDING.UiEventBaseAppRecordChanged,
 			value: 'drive.file.bitable_record_changed_v1',
 			description:
 				'This event is triggered when a subscribed multi-dimensional table record changes',
 		},
 		{
-			name: 'Card Postback Interaction(卡片回传交互)',
+			name: WORDING.UiEventCardPostback,
 			value: 'card.action.trigger',
 			description:
 				'This callback is triggered when the user clicks on the component configured with postback interaction on the card',
 		},
 		{
-			name: 'Delete Reaction for Message(删除消息表情回复)',
+			name: WORDING.UiEventDeleteReaction,
 			value: 'im.message.reaction.deleted_v1',
 			description: 'This event will be triggered when the message reaction is deleted',
 			displayOptions: {
@@ -717,7 +718,7 @@ export const triggerEventProperty = {
 			},
 		},
 		{
-			name: 'Receive Message(接收消息)',
+			name: WORDING.UiEventReceiveMessage,
 			value: TriggerEventType.ReceiveMessage,
 			description: 'This event is triggered when the bot receives a message sent by a user',
 		},

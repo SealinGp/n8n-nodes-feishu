@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions, NodeApiError, NodeOperationError } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
@@ -24,14 +25,13 @@ export default {
 	order: 100,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/im-v1/message/create">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/im-v1/message/create')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName:
-				'Tip: Get a feel with the quick <a href="https://github.com/zhgqthomas/n8n-nodes-feishu-lark/blob/main/README.md#send-streaming-message" target="_blank">tutorial</a> or see an <a href="https://github.com/zhgqthomas/n8n-nodes-feishu-lark/blob/main/demo/send_streaming_message.json" target="_blank">example</a> of how this node works',
+			displayName: `'Tip: Get a feel with the quick <a href="https://github.com/zhgqthomas/n8n-nodes-feishu-lark/blob/main/README.md#send-streaming-message" target="_blank">tutorial</a> or see an <a href="https://github.com/zhgqthomas/n8n-nodes-feishu-lark/blob/main/demo/send_streaming_message.json" target="_blank">example</a> of how this node works'`,
 			name: 'streamMessageStarterCallout',
 			type: 'callout',
 			default: '',
@@ -39,11 +39,11 @@ export default {
 		DESCRIPTIONS.RECEIVE_ID_TYPE,
 		{
 			...DESCRIPTIONS.MEMBER_ID,
-			displayName: 'Receive ID(接收 ID)',
+			displayName: WORDING.UiReceiveId,
 			name: 'receive_id',
 		},
 		{
-			displayName: 'Webhook URL',
+			displayName: WORDING.UiWebhookUrl,
 			name: 'webhook_url',
 			type: 'string',
 			required: true,
@@ -59,7 +59,7 @@ export default {
 			default: {},
 			options: [
 				{
-					displayName: 'Bearer Token',
+					displayName: WORDING.UiBearerToken,
 					name: 'bearer_token',
 					type: 'string',
 					hint: 'Bearer token for authenticating with the webhook',
@@ -69,7 +69,7 @@ export default {
 					},
 				},
 				{
-					displayName: 'Initial Message',
+					displayName: WORDING.UiInitialMessage,
 					name: 'initial_message',
 					type: 'string',
 					default: 'Thinking...',
@@ -79,7 +79,7 @@ export default {
 					description: 'Default messages shown at the start of the chat, one per line',
 				},
 				{
-					displayName: 'Timeout(minutes)',
+					displayName: WORDING.UiTimeout,
 					name: 'timeout',
 					type: 'number',
 					default: 10,

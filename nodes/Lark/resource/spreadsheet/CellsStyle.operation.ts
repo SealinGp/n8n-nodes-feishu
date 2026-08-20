@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -14,27 +15,27 @@ export default {
 		DESCRIPTIONS.SHEET_ID,
 		DESCRIPTIONS.CELL_RANGE,
 		{
-			displayName: 'Style(样式)',
+			displayName: WORDING.UiStyle,
 			name: 'style',
 			type: 'collection',
 			default: {},
 			options: [
 				{
-					displayName: 'Background Color(背景颜色)',
+					displayName: WORDING.UiBackgroundColor,
 					name: 'backColor',
 					type: 'color',
 					default: '',
 					description: 'Background color, in hexadecimal color code',
 				},
 				{
-					displayName: 'Border Color(边框颜色)',
+					displayName: WORDING.UiBorderColor,
 					name: 'borderColor',
 					type: 'color',
 					default: '',
 					description: 'Border color, in hexadecimal color code',
 				},
 				{
-					displayName: 'Border Type(边框类型)',
+					displayName: WORDING.UiBorderType,
 					name: 'borderType',
 					type: 'options',
 					default: 'NO_BORDER',
@@ -74,20 +75,20 @@ export default {
 					],
 				},
 				{
-					displayName: 'Font Color(字体颜色)',
+					displayName: WORDING.UiFontColor,
 					name: 'foreColor',
 					type: 'color',
 					default: '',
 					description: 'Font color, in hexadecimal color code',
 				},
 				{
-					displayName: 'Font Style(字体样式)',
+					displayName: WORDING.UiFontStyle,
 					name: 'font',
 					type: 'collection',
 					default: {},
 					options: [
 						{
-							displayName: 'Font Size(字体大小)',
+							displayName: WORDING.UiFontSize,
 							name: 'fontSize',
 							type: 'string',
 							default: '',
@@ -95,19 +96,19 @@ export default {
 							description: 'Font size: 9 to 36, line spacing fixed at 1.5, for example: 10pt/1.5',
 						},
 						{
-							displayName: 'Bold(加粗)',
+							displayName: WORDING.UiBold,
 							name: 'bold',
 							type: 'boolean',
 							default: false,
 						},
 						{
-							displayName: 'Italic(斜体)',
+							displayName: WORDING.UiItalic,
 							name: 'italic',
 							type: 'boolean',
 							default: false,
 						},
 						{
-							displayName: 'Clean(清除字体格式)',
+							displayName: WORDING.UiClean,
 							name: 'clean',
 							type: 'boolean',
 							default: false,
@@ -115,7 +116,7 @@ export default {
 					],
 				},
 				{
-					displayName: 'Horizontal Alignment(水平对齐方式)',
+					displayName: WORDING.UiHorizontalAlignment,
 					name: 'hAlign',
 					type: 'options',
 					default: 0,
@@ -136,13 +137,13 @@ export default {
 					description: 'Horizontal alignment. Optional values: 0: left, 1: middle, 2: right.',
 				},
 				{
-					displayName: 'Number Format(数字格式)',
+					displayName: WORDING.UiNumberFormat,
 					name: 'formatter',
 					type: 'string',
 					default: '',
 				},
 				{
-					displayName: 'Text Decoration(文本其他样式)',
+					displayName: WORDING.UiTextDecoration,
 					name: 'textDecoration',
 					type: 'options',
 					default: 0,
@@ -166,7 +167,7 @@ export default {
 					],
 				},
 				{
-					displayName: 'Vertical Alignment(垂直对齐方式)',
+					displayName: WORDING.UiVerticalAlignment,
 					name: 'vAlign',
 					type: 'options',
 					default: 0,
@@ -189,7 +190,7 @@ export default {
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/sheets-v3/data-operation/set-cell-style">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/sheets-v3/data-operation/set-cell-style')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',

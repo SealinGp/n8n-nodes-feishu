@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import { ResourceOperation } from '../../../help/type/IResource';
 import { WORDING } from '../../../help/wording';
@@ -14,25 +15,25 @@ const REQUEST_BODY = [
 ];
 
 export default {
-	name: 'Add Members | 添加任务成员',
+	name: WORDING.LabelAddMembers,
 	value: 'addMembers',
 	order: 90,
 	options: [
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/task-v2/task/add_members">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/task-v2/task/add_members')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: 'Task ID(任务ID)',
+			displayName: WORDING.LabelTaskID,
 			name: 'task_guid',
 			type: 'string',
 			required: true,
 			default: '',
 		},
 		{
-			displayName: 'User ID Type(用户 ID 类型)',
+			displayName: WORDING.LabelUserIDType,
 			name: 'user_id_type',
 			type: 'options',
 			options: [
@@ -43,7 +44,7 @@ export default {
 			default: 'open_id',
 		},
 		{
-			displayName: 'Client Token(幂等Token)',
+			displayName: WORDING.LabelClientToken,
 			name: 'client_token',
 			type: 'string',
 			typeOptions: { password: true },
@@ -51,7 +52,7 @@ export default {
 			description: 'Idempotent token',
 		},
 		{
-			displayName: 'Members(成员)',
+			displayName: WORDING.LabelMembers,
 			name: 'members',
 			type: 'json',
 			required: true,

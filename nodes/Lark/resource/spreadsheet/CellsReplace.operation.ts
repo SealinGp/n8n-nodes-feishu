@@ -1,3 +1,4 @@
+import { getDocumentationUrl } from '../../../help/utils/urls';
 import { IDataObject, IExecuteFunctions } from 'n8n-workflow';
 import RequestUtils from '../../../help/utils/RequestUtils';
 import { ResourceOperation } from '../../../help/type/IResource';
@@ -15,7 +16,7 @@ export default {
 		DESCRIPTIONS.CELL_RANGE,
 		DESCRIPTIONS.SEARCH_KEY,
 		{
-			displayName: 'Replacement(替换字符串)',
+			displayName: WORDING.UiReplacement,
 			name: 'replacement',
 			type: 'string',
 			required: true,
@@ -36,7 +37,7 @@ export default {
 			],
 		},
 		{
-			displayName: `<a target="_blank" href="https://open.feishu.cn/document/server-docs/docs/sheets-v3/data-operation/replace">${WORDING.OpenDocument}</a>`,
+			displayName: `<a target="_blank" href="${getDocumentationUrl('/document/server-docs/docs/sheets-v3/data-operation/replace')}">${WORDING.OpenDocument}</a>`,
 			name: 'notice',
 			type: 'notice',
 			default: '',
